@@ -35,6 +35,7 @@ class PostgresqlAT15 < Formula
 
   depends_on "lz4"
   depends_on "openssl@1.1"
+  depends_on "python"
   depends_on "readline"
 
   uses_from_macos "libxml2"
@@ -77,6 +78,9 @@ class PostgresqlAT15 < Formula
         --with-tcl
       ]
     end
+
+    args << "--with-python"
+    ENV["PYTHON"] = which("python3")
 
     # PostgreSQL by default uses xcodebuild internally to determine this,
     # which does not work on CLT-only installs.
