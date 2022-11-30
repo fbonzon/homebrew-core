@@ -35,7 +35,7 @@ class Postgis < Formula
   depends_on "geos"
   depends_on "json-c" # for GeoJSON and raster handling
   depends_on "pcre2"
-  depends_on "postgresql@14"
+  depends_on "postgresql@15"
   depends_on "proj"
   depends_on "protobuf-c" # for MVT (map vector tiles) support
   depends_on "sfcgal" # for advanced 2D/3D functions
@@ -43,7 +43,7 @@ class Postgis < Formula
   fails_with gcc: "5"
 
   def postgresql
-    Formula["postgresql@14"]
+    Formula["postgresql@15"]
   end
 
   def install
@@ -65,7 +65,7 @@ class Postgis < Formula
 
     system "./autogen.sh" if build.head?
     # Fixes config/install-sh: No such file or directory
-    # This is caused by a misalignment between ./configure in postgres@14 and postgis
+    # This is caused by a misalignment between ./configure in postgres@15 and postgis
     mv "build-aux", "config"
     inreplace %w[configure utils/Makefile.in] do |s|
       s.gsub! "build-aux", "config"
@@ -87,7 +87,7 @@ class Postgis < Formula
     bin.install (buildpath/postgresql_stage_path/"bin").children
     doc.install (buildpath/postgresql_stage_path/"share/doc").children
 
-    stage_path = File.join("stage", HOMEBREW_PREFIX)
+    stage_path = File.join("stage", postgresql.prefix)
     lib.install (buildpath/stage_path/"lib").children
     share.install (buildpath/stage_path/"share").children
 
