@@ -1,13 +1,13 @@
 class Numcpp < Formula
   desc "C++ implementation of the Python Numpy library"
   homepage "https://dpilger26.github.io/NumCpp"
-  url "https://github.com/dpilger26/NumCpp/archive/Version_2.8.0.tar.gz"
-  sha256 "3868cf24b0981d5b5bfeaea65719f541f82d331ef7b79ba0d73cedb4dc7ddd47"
+  url "https://github.com/dpilger26/NumCpp/archive/Version_2.10.1.tar.gz"
+  sha256 "847382a780bea2a9b804c1835dcc5f9addabd0d1e3eb9c8339cde9422a5008d6"
   license "MIT"
   head "https://github.com/dpilger26/NumCpp.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, all: "11b0e73f6096a7bb0a074091dd6e66f492efb99b286aa00505cd3af67eebde8b"
+    sha256 cellar: :any_skip_relocation, all: "1218ab3600f36cdaac1d09d08d0e8db1fd16a1d40808b33b4643370cd8dd9ff4"
   end
 
   depends_on "cmake" => :build
@@ -30,7 +30,7 @@ class Numcpp < Formula
               std::cout << a[i] << std::endl;
       }
     EOS
-    system ENV.cxx, "-std=c++14", "test.cpp", "-o", "test", "-I#{include}"
+    system ENV.cxx, "-std=c++17", "test.cpp", "-o", "test", "-I#{include}"
     assert_equal "1\n5\n9\n", shell_output("./test")
   end
 end

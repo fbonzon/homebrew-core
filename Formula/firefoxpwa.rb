@@ -1,19 +1,19 @@
 class Firefoxpwa < Formula
   desc "Tool to install, manage and use Progressive Web Apps in Mozilla Firefox"
   homepage "https://github.com/filips123/PWAsForFirefox"
-  url "https://github.com/filips123/PWAsForFirefox/archive/refs/tags/v2.4.0.tar.gz"
-  sha256 "75f288505dcbca9a6dece3221ccea3e77fa6c6792e20c6cda4f829bc025a16ef"
+  url "https://github.com/filips123/PWAsForFirefox/archive/refs/tags/v2.5.0.tar.gz"
+  sha256 "c9510cc0222e5a3b66451a8ac558205a3a63f24df78c4ddef5d5313a553aa521"
   license "MPL-2.0"
   head "https://github.com/filips123/PWAsForFirefox.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "bef883d33c8bc7a67cd0ffd7c34609779c3dd7c5ad58ef6b543d8d69f2194626"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "2d8cbcab0a43937b439558fd1700d916a2a70e0ca3c1eaefdfe4ba302fd9495c"
-    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "60a87c9c7ebe052bc62961173230e67994244437b0c63c686f7c79ac1381b970"
-    sha256 cellar: :any_skip_relocation, ventura:        "74df570163d7da72a4adba5dcbb600030e5febcade84f196d8bf8e8fc6db0123"
-    sha256 cellar: :any_skip_relocation, monterey:       "ac05a9034b4984457c9a90c9b11f0ed11adab4548d70f754c3df8de18549b1b4"
-    sha256 cellar: :any_skip_relocation, big_sur:        "24898297100d24d5df426e8fea521e9dc313576df62c5b02b26339b1731776d6"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "17c9c80303deba9a450f1d17c1c241a0dc281465a6d401192234ba34011ebed2"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "122b66a24fa72f7bcc40489d93f9021ab957e7bf590ce7f5fdfb3d166b00846e"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "b629b8c527c862d5731ab320c15d23063aa684bd587a933ef23afa9b5d22bb9d"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "a7dc6439cd3da8ccb8e65ba75746bc6f21c9da9c27a1d91aed548f370f4374dc"
+    sha256 cellar: :any_skip_relocation, ventura:        "6fdbf79aa744fa9aaaefa23227bcd5e7ce4f0ce1e1f3275761c0b427af46b371"
+    sha256 cellar: :any_skip_relocation, monterey:       "9d1bf860e5ca1417fb1909bf59ecf76694dc042ae08f1b1a856cfe103a224d26"
+    sha256 cellar: :any_skip_relocation, big_sur:        "037baf810a23d65a8687b06e54d0da902cf6cf1455bbbd6c217e13479115f156"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "ca2c8fe61e5a2da8cdbf3d68269a9727599f7d9a81f7429fd054a16e895a2471"
   end
 
   depends_on "rust" => :build

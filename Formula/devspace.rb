@@ -2,8 +2,8 @@ class Devspace < Formula
   desc "CLI helps develop/deploy/debug apps with Docker and k8s"
   homepage "https://devspace.sh/"
   url "https://github.com/loft-sh/devspace.git",
-      tag:      "v6.2.5",
-      revision: "f26b041dece7f11b247cb323a264e726aef1f2c6"
+      tag:      "v6.3.2",
+      revision: "294a386008d52a6ed58448f3c73e5f3ef3caeb00"
   license "Apache-2.0"
   head "https://github.com/loft-sh/devspace.git", branch: "master"
 
@@ -13,13 +13,13 @@ class Devspace < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "79113395c713535d2f8c7828e8c01062f71c5eaa4ce6209de14e2dc98634c8b0"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "092bdae23e7cb1b16b75123b258afd767b52a18e96ba57f602fea7d9e3fabc13"
-    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "f9e1f07ceebeb9061360828073906360818ae52ce78bbe85285771c5626e73db"
-    sha256 cellar: :any_skip_relocation, ventura:        "9babde43483f55384e35eaa643cfbb30822b81514fd362db54e74d4a391a40e7"
-    sha256 cellar: :any_skip_relocation, monterey:       "e9e40ee04330e9391e5df4aff9195a937569966bfceb8f8ff34b0717c1ba85df"
-    sha256 cellar: :any_skip_relocation, big_sur:        "5a55cea36a0b019934e2e8c04b73050b29d213742bbefe7be770893678d6bf4f"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "d68971d2d5ae5a9c1926789fe6723d0d99ca9f47190a8e2e2c970d4f74e8ad85"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "d875717180b1442da54a500bbc33834aae1d16ce0aa539676f06cf0a4ce2b708"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "e9d9dafcee76f1cbc03eaf65669dab78e6e35925093df71f92dfa81b656eea17"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "6576823d6be101745cb55171dd83a9b6647f814f5f067d467839bb3b544f7ab3"
+    sha256 cellar: :any_skip_relocation, ventura:        "bd083bfcc69ca6d4c6f41c43f04003e36c9222770a539b9cfe6cda662b793f0d"
+    sha256 cellar: :any_skip_relocation, monterey:       "90aecaa31b19fa3e2cb8d6624d644241e20c7b1663e570dc8f6120ec5b12f87f"
+    sha256 cellar: :any_skip_relocation, big_sur:        "567561985d4f433cf822623583e6a3e3955725d90b44e793a6698d47631588ce"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "1b5c22a0fd78c7e81e2b5658608387e609a7f66f83a5f35c61d9605049a80d3d"
   end
 
   depends_on "go" => :build

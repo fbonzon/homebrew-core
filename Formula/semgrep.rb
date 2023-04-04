@@ -4,8 +4,8 @@ class Semgrep < Formula
   desc "Easily detect and prevent bugs and anti-patterns in your codebase"
   homepage "https://semgrep.dev"
   url "https://github.com/returntocorp/semgrep.git",
-      tag:      "v1.9.0",
-      revision: "688d7ca651a162218bef679cae698ee11a6d31b7"
+      tag:      "v1.16.0",
+      revision: "b9b85d91da32114f8356366204186b7e09f3fbac"
   license "LGPL-2.1-only"
   head "https://github.com/returntocorp/semgrep.git", branch: "develop"
 
@@ -15,13 +15,13 @@ class Semgrep < Formula
   end
 
   bottle do
-    sha256 cellar: :any, arm64_ventura:  "fa58b3dde19238558b4c3676c5c49d190248b66a91e6a17478a75d465aeae685"
-    sha256 cellar: :any, arm64_monterey: "ec33da44775799fcb1f7cc8abaa5ad9c4407e25db8deec1ae3636b0d6d6eab5c"
-    sha256 cellar: :any, arm64_big_sur:  "ef9e012ba48510f42b796779f3f2767a0e9ae130ea8126a51b608098b9a27c8c"
-    sha256 cellar: :any, ventura:        "6daaa95d7ec924b537d44e1210d6c309908277d931fcf95a69e462e42073be94"
-    sha256 cellar: :any, monterey:       "b73de1bd4573ed790d063261201c6bbb12c435fe8a33517be34c9da74d90cbf2"
-    sha256 cellar: :any, big_sur:        "092f3c132e66028f876aa0cfe8ae8d32e923fe027d476873988caf6e1a3e10d7"
-    sha256               x86_64_linux:   "ef433d2039b04c2994c5ac12f80b5b43c6c7cae14e7ef84b1b9d71d012a9b9e6"
+    sha256 cellar: :any, arm64_ventura:  "02e8d9197ac862f66b1a618950071517861bfac437fffcf08503747c68473f1f"
+    sha256 cellar: :any, arm64_monterey: "4c686c4d0e6736a1128bfd9d18db8749d03764ff9cf735f0ed76cda67d08aca9"
+    sha256 cellar: :any, arm64_big_sur:  "83141c0be48695e5bd3efa3fb24c9dd3a98899d9a27ee135375490cde74526f9"
+    sha256 cellar: :any, ventura:        "52419ccb33b7ddff0484637936eb1a29485d03489fcb672e175268d619081734"
+    sha256 cellar: :any, monterey:       "c0c2fc587070808d15a488e4956b8e11d2ac5f54a6341797a9c07423aca4c609"
+    sha256 cellar: :any, big_sur:        "60e058fefb918e91c613f8e6d03ec4bdc7816a887f1fb8b438d391f272176801"
+    sha256               x86_64_linux:   "f13266b3798669c52ffd1b3c649075f6164edf82bdf6585257e5d2484f7b7f6b"
   end
 
   depends_on "cmake" => :build
@@ -31,6 +31,7 @@ class Semgrep < Formula
   depends_on "opam" => :build
   depends_on "pipenv" => :build
   depends_on "pkg-config" => :build
+  depends_on "gmp"
   depends_on "pcre"
   depends_on "python-typing-extensions"
   depends_on "python@3.11"
@@ -61,8 +62,8 @@ class Semgrep < Formula
   end
 
   resource "charset-normalizer" do
-    url "https://files.pythonhosted.org/packages/96/d7/1675d9089a1f4677df5eb29c3f8b064aa1e70c1251a0a8a127803158942d/charset-normalizer-3.0.1.tar.gz"
-    sha256 "ebea339af930f8ca5d7a699b921106c6e29c617fe9606fa7baa043c1cdae326f"
+    url "https://files.pythonhosted.org/packages/ff/d7/8d757f8bd45be079d76309248845a04f09619a7b17d6dfc8c9ff6433cac2/charset-normalizer-3.1.0.tar.gz"
+    sha256 "34e0a2f9c370eb95597aae63bf85eb5e96826d81e3dcf88b8886012906f509b5"
   end
 
   resource "click" do
@@ -105,19 +106,29 @@ class Semgrep < Formula
     sha256 "0f864437ab8b6076ba6707453ef8f98a6a0d512a80e93f8abdb676f737ecb60d"
   end
 
+  resource "markdown-it-py" do
+    url "https://files.pythonhosted.org/packages/e4/c0/59bd6d0571986f72899288a95d9d6178d0eebd70b6650f1bb3f0da90f8f7/markdown-it-py-2.2.0.tar.gz"
+    sha256 "7c9a5e412688bc771c67432cbfebcdd686c93ce6484913dccf06cb5a0bea35a1"
+  end
+
+  resource "mdurl" do
+    url "https://files.pythonhosted.org/packages/d6/54/cfe61301667036ec958cb99bd3efefba235e65cdeb9c84d24a8293ba1d90/mdurl-0.1.2.tar.gz"
+    sha256 "bb413d29f5eea38f31dd4754dd7377d4465116fb207585f97bf925588687c1ba"
+  end
+
   resource "packaging" do
     url "https://files.pythonhosted.org/packages/47/d5/aca8ff6f49aa5565df1c826e7bf5e85a6df852ee063600c1efa5b932968c/packaging-23.0.tar.gz"
     sha256 "b6ad297f8907de0fa2fe1ccbd26fdaf387f5f47c7275fedf8cce89f99446cf97"
   end
 
-  resource "parsy" do
-    url "https://files.pythonhosted.org/packages/70/96/ba47d2f91e3375cfcae1cf7f90b6c2b043e6e15b76a0dd2f75a0849391de/parsy-2.0.tar.gz"
-    sha256 "7fd36ce0ebb0b80d969d39975038172de95ba212d9f0e1e73d8d51bf284f4524"
+  resource "peewee" do
+    url "https://files.pythonhosted.org/packages/68/a9/3f23e0d8a05e9ec4f6180dc01ec0e73e207e526161ee74647eb1488b613d/peewee-3.16.0.tar.gz"
+    sha256 "1800c0a04962ee99d161c07f5a12fc49549caf5cfcda426a9103e34e37f854ba"
   end
 
-  resource "peewee" do
-    url "https://files.pythonhosted.org/packages/17/c8/8035f2155832580d786c35cb1ce0a89d80a67be522f620878fc294742905/peewee-3.15.4.tar.gz"
-    sha256 "2581520c8dfbacd9d580c2719ae259f0637a9e46eda47dfc0ce01864c6366205"
+  resource "Pygments" do
+    url "https://files.pythonhosted.org/packages/da/6a/c427c06913204e24de28de5300d3f0e809933f376e0b7df95194b2bb3f71/Pygments-2.14.0.tar.gz"
+    sha256 "b3ed06a9e8ac9a9aae5a6f5dbe78a8a58655d17b43b93c078f094ddc476ae297"
   end
 
   resource "pyrsistent" do
@@ -135,6 +146,11 @@ class Semgrep < Formula
     sha256 "98b1b2782e3c6c4904938b84c0eb932721069dfdb9134313beff7c83c2df24bf"
   end
 
+  resource "rich" do
+    url "https://files.pythonhosted.org/packages/9a/50/672a8d347f92bc752b04c338bbf932fbd0104fbc416c82cc91aa5f7b4b0b/rich-13.3.3.tar.gz"
+    sha256 "dc84400a9d842b3a9c5ff74addd8eb798d155f36c1c91303888e0a66850d2a15"
+  end
+
   resource "ruamel.yaml" do
     url "https://files.pythonhosted.org/packages/46/a9/6ed24832095b692a8cecc323230ce2ec3480015fbfa4b79941bd41b23a3c/ruamel.yaml-0.17.21.tar.gz"
     sha256 "8b7ce697a2f212752a35c1ac414471dc16c424c9573be4926b56ff3f5d23b7af"
@@ -145,19 +161,14 @@ class Semgrep < Formula
     sha256 "de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f"
   end
 
-  resource "tqdm" do
-    url "https://files.pythonhosted.org/packages/c1/c2/d8a40e5363fb01806870e444fc1d066282743292ff32a9da54af51ce36a2/tqdm-4.64.1.tar.gz"
-    sha256 "5f4f682a004951c1b450bc753c710e9280c5746ce6ffedee253ddbcbf54cf1e4"
-  end
-
   resource "ujson" do
     url "https://files.pythonhosted.org/packages/43/1a/b0a027144aa5c8f4ea654f4afdd634578b450807bb70b9f8bad00d6f6d3c/ujson-5.7.0.tar.gz"
     sha256 "e788e5d5dcae8f6118ac9b45d0b891a0d55f7ac480eddcb7f07263f2bcf37b23"
   end
 
   resource "urllib3" do
-    url "https://files.pythonhosted.org/packages/c5/52/fe421fb7364aa738b3506a2d99e4f3a56e079c0a798e9f4fa5e14c60922f/urllib3-1.26.14.tar.gz"
-    sha256 "076907bf8fd355cde77728471316625a4d2f7e713c125f51953bb5b3eecf4f72"
+    url "https://files.pythonhosted.org/packages/21/79/6372d8c0d0641b4072889f3ff84f279b738cd8595b64c8e0496d4e848122/urllib3-1.26.15.tar.gz"
+    sha256 "8a388717b9476f934a21484e8c8e61875ab60644d29b9b39e11e4b9dc1c6b305"
   end
 
   resource "wcmatch" do
@@ -170,11 +181,6 @@ class Semgrep < Formula
     Dir.mktmpdir("opamroot") do |opamroot|
       ENV["OPAMROOT"] = opamroot
       ENV["OPAMYES"] = "1"
-
-      # Officially suggested workaround for breaking change in setuptools v50.0.0
-      # See: https://sourceforge.net/p/ruamel-yaml/tickets/356/
-      # Relevant Issue: https://github.com/pypa/setuptools/issues/2355
-      ENV["SETUPTOOLS_USE_DISTUTILS"] = "stdlib"
 
       system "opam", "init", "--no-setup", "--disable-sandboxing"
       ENV.deparallelize { system "opam", "switch", "create", "ocaml-base-compiler.4.14.0" }

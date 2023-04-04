@@ -1,10 +1,10 @@
 class PostgresqlAT15 < Formula
   desc "Object-relational database system"
   homepage "https://www.postgresql.org/"
-  url "https://ftp.postgresql.org/pub/source/v15.1/postgresql-15.1.tar.bz2"
-  sha256 "64fdf23d734afad0dfe4077daca96ac51dcd697e68ae2d3d4ca6c45cb14e21ae"
+  url "https://ftp.postgresql.org/pub/source/v15.2/postgresql-15.2.tar.bz2"
+  sha256 "99a2171fc3d6b5b5f56b757a7a3cb85d509a38e4273805def23941ed2b8468c7"
   license "PostgreSQL"
-  revision 1
+  revision 3
 
   livecheck do
     url "https://ftp.postgresql.org/pub/source/"
@@ -12,13 +12,13 @@ class PostgresqlAT15 < Formula
   end
 
   bottle do
-    sha256 arm64_ventura:  "32787f590733c9213c0c43d27961a1635f89c29d844835026baa94f0b3c3fbc5"
-    sha256 arm64_monterey: "c82ec0b5027fb32f497ab81ac5562b0bbf5e41d613953c0be43b9557cc6d05ec"
-    sha256 arm64_big_sur:  "ce7769941ef230597495139a1525f6fefe5a425932a40871530b4bc287586600"
-    sha256 ventura:        "ff85a7c34be9e6f1bc47a13fcf306c56a2a2c402eb738896bedeb40eac679c6a"
-    sha256 monterey:       "ce136ff6ad03041b2a26e457cd697c66284ce9b240e7559524f219b16f51c1d8"
-    sha256 big_sur:        "c929e858abb2150bc949c9572615d196afd96ed9a13638aa13370f8d5cfd87fa"
-    sha256 x86_64_linux:   "8516f2705125032001960e5dc015f533b667104331ba2edecd57ebd960c743ec"
+    sha256 arm64_ventura:  "5f4bb0292cf7211dae2b52762b9563690dec2e3d6a5f8b688bf9851856d700f7"
+    sha256 arm64_monterey: "f232dff7c66b9c577efeb525647c4d0ba7e85bda0ec9b2ae2e34b935e655e4a9"
+    sha256 arm64_big_sur:  "27e79988a9d9d471a1369170dc4f7ce5d330d6b7bcff00e66925acba2f596e77"
+    sha256 ventura:        "9b0a1bf8c23b7110a7f4ada8727902425c3390b53ec90aa7aa627840064d81f5"
+    sha256 monterey:       "3c34499552f53970686173aee2be6e32b39d4a381e348631c699c7921cd10282"
+    sha256 big_sur:        "1af11ddcca03c30475a56f06c8d1d52dfaacc34d2038b73eef1a5bd50747c3f0"
+    sha256 x86_64_linux:   "96c42a6d54616ea31acd3a59536615ff7a6e71f438821becd5e5485c5c368012"
   end
 
   keg_only :versioned_formula
@@ -27,6 +27,7 @@ class PostgresqlAT15 < Formula
   deprecate! date: "2027-11-11", because: :unsupported
 
   depends_on "pkg-config" => :build
+  depends_on "gettext"
   depends_on "icu4c"
 
   # GSSAPI provided by Kerberos.framework crashes when forked.
@@ -53,12 +54,17 @@ class PostgresqlAT15 < Formula
     ENV.prepend "LDFLAGS", "-L#{Formula["openssl@1.1"].opt_lib} -L#{Formula["readline"].opt_lib}"
     ENV.prepend "CPPFLAGS", "-I#{Formula["openssl@1.1"].opt_include} -I#{Formula["readline"].opt_include}"
 
+    # Fix 'libintl.h' file not found for extensions
+    ENV.prepend "LDFLAGS", "-L#{Formula["gettext"].opt_lib}"
+    ENV.prepend "CPPFLAGS", "-I#{Formula["gettext"].opt_include}"
+
     args = std_configure_args + %W[
       --datadir=#{opt_pkgshare}
       --libdir=#{opt_lib}
       --includedir=#{opt_include}
       --sysconfdir=#{etc}
       --docdir=#{doc}
+      --enable-nls
       --enable-thread-safety
       --with-gssapi
       --with-icu
@@ -143,6 +149,7 @@ class PostgresqlAT15 < Formula
 
   service do
     run [opt_bin/"postgres", "-D", f.postgresql_datadir]
+    environment_variables LC_ALL: "C"
     keep_alive true
     log_path f.postgresql_log_path
     error_log_path f.postgresql_log_path
@@ -156,5 +163,6 @@ class PostgresqlAT15 < Formula
     assert_equal (opt_lib/"postgresql").to_s, shell_output("#{bin}/pg_config --pkglibdir").chomp
     assert_equal (opt_include/"postgresql").to_s, shell_output("#{bin}/pg_config --pkgincludedir").chomp
     assert_equal (opt_include/"postgresql/server").to_s, shell_output("#{bin}/pg_config --includedir-server").chomp
+    assert_match "-I#{Formula["gettext"].opt_include}", shell_output("#{bin}/pg_config --cppflags")
   end
 end

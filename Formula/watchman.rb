@@ -1,19 +1,19 @@
 class Watchman < Formula
   desc "Watch files and take action when they change"
   homepage "https://github.com/facebook/watchman"
-  url "https://github.com/facebook/watchman/archive/v2023.02.06.00.tar.gz"
-  sha256 "7faf0931b80ec3fe34618c30097955ccd4696d75dc188f5241d77fe128b1cba5"
+  url "https://github.com/facebook/watchman/archive/v2023.04.03.00.tar.gz"
+  sha256 "c3654a6f75e0481494fcab06b378beb1e43b152b8986dbf8f10e8b2cf93bbb4a"
   license "MIT"
   head "https://github.com/facebook/watchman.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any,                 arm64_ventura:  "f815cbfad627052e3d1b4db27d33ae0350e8ea5e82fd0b441ab55b77d7f06491"
-    sha256 cellar: :any,                 arm64_monterey: "054942f79270c676ea907ef6266cb1f9377e8f6f0bf5dfcbb8c60f03db5bec83"
-    sha256 cellar: :any,                 arm64_big_sur:  "dea0d86d9b24cd9f49263ade47039db8b08758b87955a4e51ad8fea10def97cf"
-    sha256 cellar: :any,                 ventura:        "be06b393782452ce629731a57f38f07d523227a10e857900776b5337924ced07"
-    sha256 cellar: :any,                 monterey:       "5ffd15a4b0e7670fd81cfd278edf78f010c17b932001bdaf411c0269b233b84f"
-    sha256 cellar: :any,                 big_sur:        "2fa49ad97e661d413b1ec8af77674d0f422f2ede0f1489db454d1410e664130f"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "a7767c00be71334e450438219da5219081bf666bbb7b36473b3d7f07b103299a"
+    sha256 cellar: :any,                 arm64_ventura:  "e6a609dc81da12428038187b2a0f4562db45324b57f06300ba2093a55d7f9e72"
+    sha256 cellar: :any,                 arm64_monterey: "00e05bdb874dfbd79b407e31d60991ea9873aa6aba72445cc3b1c8ee07d4cbcb"
+    sha256 cellar: :any,                 arm64_big_sur:  "9f2ece6cd71f4e02592531db6c090071f55e77c2c4fbf482190996c32d5f7c56"
+    sha256 cellar: :any,                 ventura:        "56330706660effb5522bc0b175fef40b75c5d20576b46012be224456de7a3dcf"
+    sha256 cellar: :any,                 monterey:       "8dc83888217ed2627047143574cd957d0e078e1820c50cbb9c0bcda3b8f43337"
+    sha256 cellar: :any,                 big_sur:        "a300f1add13a4f9a145126468038497d025ff5f47ec00deae98c34b55cf215e3"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "1d8449eb241829c7d995b934325b0673179050db1f2e4f98923e87f5096dd545"
   end
 
   # https://github.com/facebook/watchman/issues/963

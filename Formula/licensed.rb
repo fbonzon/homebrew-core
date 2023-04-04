@@ -2,18 +2,18 @@ class Licensed < Formula
   desc "Cache and verify the licenses of dependencies"
   homepage "https://github.com/github/licensed"
   url "https://github.com/github/licensed.git",
-      tag:      "4.0.4",
-      revision: "799794e021e40b3a27c88def92c0008b9fad79fc"
+      tag:      "4.3.0",
+      revision: "48109fdce7dc403bac89b8827573117243cec377"
   license "MIT"
 
   bottle do
-    sha256 cellar: :any, arm64_ventura:  "94261580e23e765f0593c5cc2b5dab686c4cc3de1aa4211b2882f8f73b349d69"
-    sha256 cellar: :any, arm64_monterey: "463f5d40ecd66c05e0a731e13e685b86ece025bf360b6b4000ddf399fc1baf53"
-    sha256 cellar: :any, arm64_big_sur:  "82e021a3c9a72981231e6cb2ba96c20af0e6f95037ebe18dd27a9d3c3520411d"
-    sha256 cellar: :any, ventura:        "ff87cb5c2958e2d2a889b444afbf5f4fcdda34209fe1906b8c2b44a42a13ade3"
-    sha256 cellar: :any, monterey:       "3964cbcc896601e95120b424b121de4a98c09509e744681ec5d51937fef601a2"
-    sha256 cellar: :any, big_sur:        "4efe84fe76623d3654d95ec244fcb5dc9e7ba5d8a43d9276f5e041fc1fbddedf"
-    sha256               x86_64_linux:   "4294d363d82f70f40227abca8302b8e89dfd0eedd823c916f54d3d52419be330"
+    sha256 cellar: :any, arm64_ventura:  "f5732f7c6605d82e02892fb00f0da92a8cce8a8507170f7893a7d2fff77a0b32"
+    sha256 cellar: :any, arm64_monterey: "a90afe645aa32306d42f73371edd3efd21d47baf28fa583c479e978426355a2d"
+    sha256 cellar: :any, arm64_big_sur:  "cd7b253187be1467ff8cfffd23c37a14a14150515b23af545c860bd64af11e49"
+    sha256 cellar: :any, ventura:        "1acff91e12693fe77513a43201a9c9ab94e3fc004304df0bb93331b42b96d3d1"
+    sha256 cellar: :any, monterey:       "6dd8b988413873e6682bffcb45010ae179e8d3eb1d60d722a41cae420951cac3"
+    sha256 cellar: :any, big_sur:        "c2392a41958ee5104202a74f3e70755d01c7637ccc50a5b4fa2a6e89d6d13d66"
+    sha256               x86_64_linux:   "6b0ff2f7641fcc4ad747f5adc3ff388f60cb95f8ab1b79eba4ab851d71476a98"
   end
 
   depends_on "cmake" => :build
@@ -23,7 +23,7 @@ class Licensed < Formula
   uses_from_macos "libffi"
 
   # Runtime dependencies of licensed
-  # https://rubygems.org/gems/licensed/versions/4.0.4/dependencies
+  # https://rubygems.org/gems/licensed/versions/4.1.0/dependencies
 
   # Upstream has temporarily removed cocoapods-core as a dependency, but it
   # will be restored in a future release, so commenting these resources out
@@ -220,22 +220,22 @@ class Licensed < Formula
     sha256 "a5dfea1a92c82856a0fe603fa29d43c086df90ad01186cee7bc5211b76f0b128"
   end
 
-  # licensee 9.16.0 -> reverse_markdown 2.1.1 -> nokogiri 1.13.10 -> mini_portile2 2.8.1
+  # licensee 9.16.0 -> reverse_markdown 2.1.1 -> nokogiri 1.14.1 -> mini_portile2 2.8.1
   resource "mini_portile2-2.8.1" do
     url "https://rubygems.org/gems/mini_portile2-2.8.1.gem"
     sha256 "b70e325e37a378aea68b6d78c9cdd060c66cbd2bef558d8f13a6af05b3f2c4a9"
   end
 
-  # licensee 9.16.0 -> reverse_markdown 2.1.1 -> nokogiri 1.13.10 -> racc 1.6.2
+  # licensee 9.16.0 -> reverse_markdown 2.1.1 -> nokogiri 1.14.1 -> racc 1.6.2
   resource "racc-1.6.2" do
     url "https://rubygems.org/gems/racc-1.6.2.gem"
     sha256 "58d26b3666382396fea84d33dc0639b7ee8d704156a52f8f22681f07b2f94f26"
   end
 
-  # licensee 9.16.0 -> reverse_markdown 2.1.1 -> nokogiri 1.13.10
-  resource "nokogiri-1.13.10" do
-    url "https://rubygems.org/gems/nokogiri-1.13.10.gem"
-    sha256 "d3ee00f26c151763da1691c7fc6871ddd03e532f74f85101f5acedc2d099e958"
+  # licensee 9.16.0 -> reverse_markdown 2.1.1 -> nokogiri 1.14.1
+  resource "nokogiri-1.14.1" do
+    url "https://rubygems.org/gems/nokogiri-1.14.1.gem"
+    sha256 "b2db3af7769c29cd77d5f39cd3d0b65ab10975bdecf04be71d683f9c9abe2663"
   end
 
   # licensee 9.16.0 -> reverse_markdown 2.1.1
@@ -274,22 +274,22 @@ class Licensed < Formula
     sha256 "d58feac7e5048113dd0c9630af7188baf81d83ab37fdd248fcbc63b9e5da654e"
   end
 
-  # reverse_markdown 2.1.1 -> nokogiri 1.13.10 -> mini_portile2 2.8.1
+  # reverse_markdown 2.1.1 -> nokogiri 1.14.1 -> mini_portile2 2.8.1
   resource "mini_portile2-2.8.1" do
     url "https://rubygems.org/gems/mini_portile2-2.8.1.gem"
     sha256 "b70e325e37a378aea68b6d78c9cdd060c66cbd2bef558d8f13a6af05b3f2c4a9"
   end
 
-  # reverse_markdown 2.1.1 -> nokogiri 1.13.10 -> racc 1.6.2
+  # reverse_markdown 2.1.1 -> nokogiri 1.14.11 -> racc 1.6.2
   resource "racc-1.6.2" do
     url "https://rubygems.org/gems/racc-1.6.2.gem"
     sha256 "58d26b3666382396fea84d33dc0639b7ee8d704156a52f8f22681f07b2f94f26"
   end
 
-  # reverse_markdown 2.1.1 -> nokogiri 1.13.10
-  resource "nokogiri-1.13.10" do
-    url "https://rubygems.org/gems/nokogiri-1.13.10.gem"
-    sha256 "d3ee00f26c151763da1691c7fc6871ddd03e532f74f85101f5acedc2d099e958"
+  # reverse_markdown 2.1.1 -> nokogiri 1.14.1
+  resource "nokogiri-1.14.1" do
+    url "https://rubygems.org/gems/nokogiri-1.14.1.gem"
+    sha256 "b2db3af7769c29cd77d5f39cd3d0b65ab10975bdecf04be71d683f9c9abe2663"
   end
 
   # reverse_markdown 2.1.1

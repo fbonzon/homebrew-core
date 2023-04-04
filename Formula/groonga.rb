@@ -1,8 +1,8 @@
 class Groonga < Formula
   desc "Fulltext search engine and column store"
   homepage "https://groonga.org/"
-  url "https://packages.groonga.org/source/groonga/groonga-12.1.1.tar.gz"
-  sha256 "a49b93ef5655c5a94a9f5d371182482f1a75a61364e415155b69a951d1372c45"
+  url "https://packages.groonga.org/source/groonga/groonga-13.0.1.tar.gz"
+  sha256 "1c2d1a6981c1ad3f02a11aff202b15ba30cb1c6147f1fa9195b519a2b728f8ba"
   license "LGPL-2.1-or-later"
 
   livecheck do
@@ -11,13 +11,13 @@ class Groonga < Formula
   end
 
   bottle do
-    sha256 arm64_ventura:  "6aee6bc7db77164816ce0534e6afaf7341920bfc1590770f01bcc4a6b9abbf02"
-    sha256 arm64_monterey: "2d6f56c78d01ebc5c6f70d894fd4f196ea1f067bf71c86b3692b6f7ad4d46caf"
-    sha256 arm64_big_sur:  "9852143c70b08e192164c54648e2460bb7a1f89d37d8ee8150319a1122676449"
-    sha256 ventura:        "a343a80849bfb9aa2a04f26b2569fc63b48109854f22278ce3cddcc9b68ac470"
-    sha256 monterey:       "7a83f1fdacfee5d8b626f9f1b977fa7536d4da55fb339fccd02c9ddfc7efe4e1"
-    sha256 big_sur:        "4834f74fc7569258fa8122d9e7f78bc3997e104f8f49a074554e4e2388f9eff8"
-    sha256 x86_64_linux:   "8533eea74f729bb1aab61e8e13dade6ad555895dad4858982f12a77a603a33a6"
+    sha256 arm64_ventura:  "2d2e2ced3d7bfb99541d05ddba5c935a08af3d332195235b95bb5d91c5f3e2da"
+    sha256 arm64_monterey: "985c4d3038c932727374d52e6ac7878c665776717c296bb418a1f3fa97b2d21a"
+    sha256 arm64_big_sur:  "2129eb13dc82d031f0e24d49729f005f6b47817748adab6b4af46e956c6505c5"
+    sha256 ventura:        "1781fbd25a952c6c202256ea13a8cfa99188c6da80f2d4adca42276dee0f5241"
+    sha256 monterey:       "3bd06f323501689aab8b8e0f8dde30c25a44ab5df1bda007ed2879ab0c8b7c77"
+    sha256 big_sur:        "0d77bc5e64d0a1ea5fc5a3a7e70a23d0755d4b5bca00aa3d75dd706d752a714a"
+    sha256 x86_64_linux:   "40f50140e933bdd52467891ec1ffc59e4dfb70f979f36bcb620d0cbe3275a1ac"
   end
 
   head do
@@ -50,11 +50,9 @@ class Groonga < Formula
   end
 
   def install
-    args = %W[
-      --prefix=#{prefix}
+    args = %w[
       --disable-zeromq
       --disable-apache-arrow
-      --enable-mruby
       --with-luajit=no
       --with-ssl
       --with-zlib
@@ -62,13 +60,10 @@ class Groonga < Formula
       --with-mecab
     ]
 
-    if build.head?
-      args << "--with-ruby"
-      system "./autogen.sh"
-    end
+    system "./autogen.sh" if build.head?
 
     mkdir "builddir" do
-      system "../configure", *args
+      system "../configure", *args, *std_configure_args
       system "make", "install"
     end
 

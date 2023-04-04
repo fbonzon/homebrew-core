@@ -1,18 +1,20 @@
+require "language/node"
+
 class Keploy < Formula
   desc "Testing Toolkit creates test-cases and data mocks from API calls, DB queries"
   homepage "https://keploy.io"
-  url "https://github.com/keploy/keploy/archive/refs/tags/v0.7.21.tar.gz"
-  sha256 "acaf26011a421a1074f644bc10eff18f04e232d41420d69413d8c303aee18adb"
+  url "https://github.com/keploy/keploy/archive/refs/tags/v0.8.5.tar.gz"
+  sha256 "9ade55cfc332ef5fc65e7d89e372c9fe88df95cf978895be9b519c3f4d5e7c76"
   license "Apache-2.0"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "e0c3cef00a7b742848d0bc0a5feaef9178e2869d4a927e3e6063c42fa91683e8"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "c8f41726c7665270edc7fed79532eebffca3b5fba2067692707b0144c06d42d6"
-    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "f72acec4fe5a99038bb39e7dba58642c95b7c9a591b20aba83a134a26a8dc466"
-    sha256 cellar: :any_skip_relocation, ventura:        "cf9615bfacf2ac385d5c8927c2d3a93d8dafad4da670cca43694133a30314eaa"
-    sha256 cellar: :any_skip_relocation, monterey:       "0ad3295116990d8b573cfcbdd9a40bfd52ea6da238bc85a133eea4291e9a7cd1"
-    sha256 cellar: :any_skip_relocation, big_sur:        "bda37f0273d89131c3dd8eea5fd16b08b433f6dae60916bd7d17423f522cd075"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "984ac42a0deab3709a1d9c5beac02f3ca3baf02cede7c8c6b27a318cef7e9806"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "b36be0638618114244a0e446ee45c2eab26d6e7bf16b9056a62e9ae9015ffda5"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "04f25f600e5f5b1d44c31f161ed1a0625a985a67e338d156cd81a82d45b49442"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "e774ce7b96505bc7e67b21eeb958487d0e3da71531dfbae6c91e58bd4e43a85e"
+    sha256 cellar: :any_skip_relocation, ventura:        "11ddeaa7e734da82c73efe6ce7306232b52bb7f839d9e94a6b88ceb1c274a3aa"
+    sha256 cellar: :any_skip_relocation, monterey:       "6c6c1e338bd508509d37996232e4b4e7882260cbfc1335128bfa0c1be1c9485b"
+    sha256 cellar: :any_skip_relocation, big_sur:        "c5b9f6b64139d90fdbd1c85cbb57f30430419920126306f27aab54a6fdad217a"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "d128a2fafd7e9e3488920074fe638dab684e81f7deb607e4ac068b2bdbf22f2a"
   end
 
   depends_on "gatsby-cli" => :build
@@ -26,6 +28,7 @@ class Keploy < Formula
 
   def install
     resource("ui").stage do
+      ENV["SHARP_IGNORE_GLOBAL_LIBVIPS"] = "1"
       system "npm", "install", "--legacy-peer-deps", *Language::Node.local_npm_install_args
       system "gatsby", "build"
       buildpath.install "./public"

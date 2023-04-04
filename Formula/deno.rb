@@ -1,19 +1,19 @@
 class Deno < Formula
   desc "Secure runtime for JavaScript and TypeScript"
   homepage "https://deno.land/"
-  url "https://github.com/denoland/deno/releases/download/v1.30.2/deno_src.tar.gz"
-  sha256 "8cdd7ed74da462895432b888659930202eeeecc3ade3464ea1c844737d1301a6"
+  url "https://github.com/denoland/deno/releases/download/v1.32.2/deno_src.tar.gz"
+  sha256 "9ff0ee1451bf4b543f43ccde6a8d1a53ead8650c1331a92fffee60180900af09"
   license "MIT"
   head "https://github.com/denoland/deno.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "84149b5c3c0f564543e3a15efa6f0e997fe8bf21cb30c84625dd626ae9afda22"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "1f5b48492baf256791b49dd39b3aaa70fc843889e0b57a6e38a89791e606b32b"
-    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "64790878182bfa7fb3ef10e4977de520571baa7afa3cb569b09b4bfd4ec955ac"
-    sha256 cellar: :any_skip_relocation, ventura:        "5309c98af8773226aadfc741356fc078f316ab6407c2d00defcb56147f65b586"
-    sha256 cellar: :any_skip_relocation, monterey:       "e077b250260c55abd31220e534c64251608dcb8568732d1166c141a7e9a3651b"
-    sha256 cellar: :any_skip_relocation, big_sur:        "9fdf0b936112a19045436b5f9ae527fa1a9117150a9ff94ba5d694dfd039fe3b"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "3253fa2870660ee8e576dd022f43c4cbed9b0891820fe0ef46af9f415346defb"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "c63a4dfac040fdfe57871c11fdcc089701cf174c6654bdfdfc71611abe0cf441"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "001a8b18bee1170f0cec617ea09aa377456b4008d44aa3627cf1fb6b24e459f2"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "42301d14ed3211081797b840f61352610c844247ea11255056932c8fcebc2033"
+    sha256 cellar: :any_skip_relocation, ventura:        "e439fdbee20c71c3705f1a1c46f9b21fc01e4d7a491f0808a8996102996cd208"
+    sha256 cellar: :any_skip_relocation, monterey:       "2ccf13ef269560e9f102e9badd4f03a5b704add441ef24fd69d51ed88c7427b2"
+    sha256 cellar: :any_skip_relocation, big_sur:        "7f53eba1bd0d36c93c986ca662686f8106e2e41a543fae6b13a6e7f57283b2a5"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "abf183dbd5e62479c4e827e6cd4bd149d9bd68a1b53cfd5f37c00edb3c7ef34c"
   end
 
   depends_on "llvm" => :build
@@ -36,25 +36,25 @@ class Deno < Formula
 
   # Temporary resources to work around build failure due to files missing from crate
   # We use the crate as GitHub tarball lacks submodules and this allows us to avoid git overhead.
-  # TODO: Remove this and `v8` resource when https://github.com/denoland/rusty_v8/pull/1063 is released
+  # TODO: Remove this and `v8` resource when https://github.com/denoland/rusty_v8/issues/1065 is resolved
   resource "rusty-v8" do
-    url "https://static.crates.io/crates/v8/v8-0.60.1.crate"
-    sha256 "07fd5b3ed559897ff02c0f62bc0a5f300bfe79bb4c77a50031b8df771701c628"
+    url "https://static.crates.io/crates/v8/v8-0.68.0.crate"
+    sha256 "81c69410b7435f1b74e82e243ba906d71e8b9bb350828291418b9311dbd77222"
   end
 
   resource "v8" do
-    url "https://github.com/denoland/v8/archive/05fb6e97fc6c5fdd2e79e4f9a51c5bf0ca0ef991.tar.gz"
-    sha256 "a083d815b21b0a2a59d1f133fd897c1f803f1418cfdffd411a89583bf37f22a8"
+    url "https://github.com/denoland/v8/archive/02aef2fce7750d472d84fa361df3946d447a6489.tar.gz"
+    sha256 "60dbd81e1a676b7d174f0fa8e563b224ec0986e21e2776f608a879fa6f118d9b"
   end
 
   # To find the version of gn used:
-  # 1. Find v8 version: https://github.com/denoland/deno/blob/v#{version}/Cargo.toml#L43
-  # 2. Find ninja_gn_binaries tag: https://github.com/denoland/rusty_v8/tree/v#{v8_version}/tools/ninja_gn_binaries.py
+  # 1. Find v8 version: https://github.com/denoland/deno/blob/v#{version}/Cargo.toml#L46
+  # 2. Find ninja_gn_binaries tag: https://github.com/denoland/rusty_v8/tree/v#{v8_version}/tools/ninja_gn_binaries.py#L21
   # 3. Find short gn commit hash from commit message: https://github.com/denoland/ninja_gn_binaries/tree/#{ninja_gn_binaries_tag}
   # 4. Find full gn commit hash: https://gn.googlesource.com/gn.git/+/#{gn_commit}
   resource "gn" do
     url "https://gn.googlesource.com/gn.git",
-        revision: "bf4e17dc67b2a2007475415e3f9e1d1cf32f6e35"
+        revision: "70d6c60823c0233a0f35eccc25b2b640d2980bdc"
   end
 
   def install

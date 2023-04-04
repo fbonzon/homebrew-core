@@ -1,26 +1,26 @@
 class Skopeo < Formula
   desc "Work with remote images registries"
   homepage "https://github.com/containers/skopeo"
-  url "https://github.com/containers/skopeo/archive/v1.11.0.tar.gz"
-  sha256 "f2e73704f901a62503c3b6d7db62d89db6fadd6787ff739c017f911853d43bd6"
+  url "https://github.com/containers/skopeo/archive/v1.11.2.tar.gz"
+  sha256 "c7d0b0d1c379ae51e03e32ec31e243257d66de810d73704b7e9ac0e87cbec745"
   license "Apache-2.0"
 
   bottle do
-    sha256 arm64_ventura:  "8cc1befa9e0e99abc64e8f73b5e57483747218f5fdfaa7c5f0ad5c22f086a975"
-    sha256 arm64_monterey: "9b8572116c6eb751631c8d985d0ee21a0b84875a998968e4c0964f623c1698fd"
-    sha256 arm64_big_sur:  "73764fdca5ac8a8d3c8efe4cd6db381dbdcb6f6a4f5cfab8f1cc6a721b2c4512"
-    sha256 ventura:        "1cbc0ee8e13287db93132f14e9c84c9470d19e01fb0742f06acfe95e2e269044"
-    sha256 monterey:       "d503982282dbb31a1b4ab67b22129b0476b579727b7be0bf1b71cc748f5e5672"
-    sha256 big_sur:        "0f4cfa6785ebe065f87cf798add17f2756be55034051f07dfde237cd7d1daec2"
-    sha256 x86_64_linux:   "d1640b714e60e7dedae9aad7826343a068900a270d1a6f25f13c3d07ea115f3b"
+    sha256 arm64_ventura:  "c442d45ad00417b2c3c397eb43e6f6bb21fee3e89b2ff4f2c3e2ef45b0f5358c"
+    sha256 arm64_monterey: "4aa82ed1caa77321e064b58a6118385d5789fc24a4006482ffac3cc2b738b933"
+    sha256 arm64_big_sur:  "8b2c01d4831655f354a70be208fa3bf58975560dedca64beae8ba547cc127f40"
+    sha256 ventura:        "9950b9cad257e899ff674088f7c6412b03711f0160275ecfa20af2602db11565"
+    sha256 monterey:       "9314700f2bbe0047a4d5c1e3334d2a8a0f59cd7f6b92a268e8cd174b5dc87af9"
+    sha256 big_sur:        "e07a1a1935636f54ff3e14a14a5bf2520ca4ee288305f2413ef2d89efbb36f54"
+    sha256 x86_64_linux:   "1ee0e459e1a9fbcadbb1a3ba2337c130b2932d922a9b782ecaf5840334610084"
   end
 
   depends_on "go" => :build
   depends_on "go-md2man" => :build
+  depends_on "pkg-config" => :build
   depends_on "gpgme"
 
   on_linux do
-    depends_on "pkg-config" => :build
     depends_on "device-mapper"
   end
 

@@ -1,9 +1,9 @@
 class Maven < Formula
   desc "Java-based project management"
   homepage "https://maven.apache.org/"
-  url "https://www.apache.org/dyn/closer.lua?path=maven/maven-3/3.8.7/binaries/apache-maven-3.8.7-bin.tar.gz"
-  mirror "https://archive.apache.org/dist/maven/maven-3/3.8.7/binaries/apache-maven-3.8.7-bin.tar.gz"
-  sha256 "628b49352130d1d25d5519b1c724f0efe58b86bad55f37a694ca8f73f11e3604"
+  url "https://www.apache.org/dyn/closer.lua?path=maven/maven-3/3.9.1/binaries/apache-maven-3.9.1-bin.tar.gz"
+  mirror "https://archive.apache.org/dist/maven/maven-3/3.9.1/binaries/apache-maven-3.9.1-bin.tar.gz"
+  sha256 "0869a4f71238e3eeec21051d062cfd915d34abe905c9bfebf94cd34578db0be7"
   license "Apache-2.0"
 
   livecheck do
@@ -12,13 +12,13 @@ class Maven < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "e7b6ec1d8230c404f0e58757a8de9481cf0cd57836599d55297ffdb3f81fccb2"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "e7b6ec1d8230c404f0e58757a8de9481cf0cd57836599d55297ffdb3f81fccb2"
-    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "e7b6ec1d8230c404f0e58757a8de9481cf0cd57836599d55297ffdb3f81fccb2"
-    sha256 cellar: :any_skip_relocation, ventura:        "92b221a5059507f0ed5f504c30376f206c5c624411bcfbfb7abce0d6324643c0"
-    sha256 cellar: :any_skip_relocation, monterey:       "92b221a5059507f0ed5f504c30376f206c5c624411bcfbfb7abce0d6324643c0"
-    sha256 cellar: :any_skip_relocation, big_sur:        "92b221a5059507f0ed5f504c30376f206c5c624411bcfbfb7abce0d6324643c0"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "e7b6ec1d8230c404f0e58757a8de9481cf0cd57836599d55297ffdb3f81fccb2"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "2332bac68dd8db05c6a61e6bd75955287de71b7abe2abcf1c354d57a24cd29f3"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "2332bac68dd8db05c6a61e6bd75955287de71b7abe2abcf1c354d57a24cd29f3"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "2332bac68dd8db05c6a61e6bd75955287de71b7abe2abcf1c354d57a24cd29f3"
+    sha256 cellar: :any_skip_relocation, ventura:        "c0229d987c8da3513e05d951990b8c5266eaf50fb1507edd39888371f3aefcc8"
+    sha256 cellar: :any_skip_relocation, monterey:       "c0229d987c8da3513e05d951990b8c5266eaf50fb1507edd39888371f3aefcc8"
+    sha256 cellar: :any_skip_relocation, big_sur:        "c0229d987c8da3513e05d951990b8c5266eaf50fb1507edd39888371f3aefcc8"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "2332bac68dd8db05c6a61e6bd75955287de71b7abe2abcf1c354d57a24cd29f3"
   end
 
   depends_on "openjdk"

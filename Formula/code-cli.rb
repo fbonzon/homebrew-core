@@ -1,8 +1,8 @@
 class CodeCli < Formula
   desc "Command-line interface built-in Visual Studio Code"
   homepage "https://github.com/microsoft/vscode"
-  url "https://github.com/microsoft/vscode/archive/refs/tags/1.75.0.tar.gz"
-  sha256 "719c1efeca10a163b18618b5b689d4843247d3e86a27a6e898113219274cb99c"
+  url "https://github.com/microsoft/vscode/archive/refs/tags/1.77.0.tar.gz"
+  sha256 "4f4dcf46209a96800715ff1178ca66f2dfc2c77018ccb23ebd27bab49d06d234"
   license "MIT"
   head "https://github.com/microsoft/vscode.git", branch: "main"
 
@@ -12,20 +12,30 @@ class CodeCli < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "8545a885cfee62bf1938756728fd998b9c4919bbe116bd1e90902875b3222b1a"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "dc7a03d15e3a3283bc8c3726491ccc11bdfd933cccaeac5426f192a045408add"
-    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "993809d75b98ed7f7ba3a0fd797631fdf47544eb673c12f5044255e04d30127b"
-    sha256 cellar: :any_skip_relocation, ventura:        "3a9f13f2401d02076b5f565ac57b5d68b2356513d473ecd7bbb3bc2e4d28e1a2"
-    sha256 cellar: :any_skip_relocation, monterey:       "b07fb6bb7dc352b1f5963774f8371668a974e45c5d8cdfb71672caa059e7ea7f"
-    sha256 cellar: :any_skip_relocation, big_sur:        "fc9818fc24a6d243cb147b06de33ac152c0e3d0c78b1550816d51f3c23e827b5"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "936c595d5b9b4606fc54cbe6a4008e4291f88837e247c061d081f2902bae0651"
+    sha256 cellar: :any,                 arm64_ventura:  "d2838b5d5daab2ce154708a951c6b7092e16c72d2f74d3cd19e9bc8ee031d913"
+    sha256 cellar: :any,                 arm64_monterey: "0d8cefe23431eb0ff95e018cf362a411cede87218f3738ec96849a9102df2313"
+    sha256 cellar: :any,                 arm64_big_sur:  "1626eb2a1ca15958a75ded647a7c23704631d4327c6c8b113922aa4dd92d5aad"
+    sha256 cellar: :any,                 ventura:        "36f26951d1fcbe510009779d54f1b3e0c5d920fa5ada190179e325af173adb8d"
+    sha256 cellar: :any,                 monterey:       "efa57260dcf8b526928e4fbf27f0e827c64394242b6e81ad969d606402431bd7"
+    sha256 cellar: :any,                 big_sur:        "71d7609991f842f3b7c94b231185b66950049588907153bf4e6031c230917ae2"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "1083d19165ae3a111e2b2f827c8ad846871e2afca003223c381b33a63d6b088e"
   end
 
   depends_on "rust" => :build
+  depends_on "openssl@3"
+
+  on_linux do
+    depends_on "pkg-config" => :build
+  end
 
   conflicts_with cask: "visual-studio-code"
 
   def install
+    # Ensure that the `openssl` crate picks up the intended library.
+    # https://crates.io/crates/openssl#manual-configuration
+    ENV["OPENSSL_DIR"] = Formula["openssl@3"].opt_prefix
+    ENV["OPENSSL_NO_VENDOR"] = "1"
+
     ENV["VSCODE_CLI_NAME_LONG"] = "Code OSS"
     ENV["VSCODE_CLI_VERSION"] = version
 
@@ -34,9 +44,28 @@ class CodeCli < Formula
     end
   end
 
+  def check_binary_linkage(binary, library)
+    binary.dynamically_linked_libraries.any? do |dll|
+      next false unless dll.start_with?(HOMEBREW_PREFIX.to_s)
+
+      File.realpath(dll) == File.realpath(library)
+    end
+  end
+
   test do
     assert_match "Successfully removed all unused servers",
       shell_output("#{bin}/code tunnel prune")
     assert_match version.to_s, shell_output("#{bin}/code --version")
+
+    linked_libraries = [
+      Formula["openssl@3"].opt_lib/shared_library("libssl"),
+      Formula["openssl@3"].opt_lib/shared_library("libcrypto"),
+    ]
+    linked_libraries << (Formula["openssl@3"].opt_lib/shared_library("libcrypto")) if OS.mac?
+
+    linked_libraries.each do |library|
+      assert check_binary_linkage(bin/"code", library),
+             "No linkage with #{library.basename}! Cargo is likely using a vendored version."
+    end
   end
 end

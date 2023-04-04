@@ -3,21 +3,26 @@ class Prowler < Formula
 
   desc "Open Source Security tool to perform Cloud Security best practices"
   homepage "https://prowler.pro/"
-  url "https://files.pythonhosted.org/packages/ee/27/81fa9b6ac286c1c5b5278e86e95cd922c28ef5401918537485a627acbdb8/prowler-3.1.3.tar.gz"
-  sha256 "96bf5dbbe68feaac07b2519d071306540c0ce87932d6217ff06f460ba5960183"
+  url "https://files.pythonhosted.org/packages/98/93/ca4bc6ba6c1424471ec740b88dcf282cc1ac0a893ed72411fde3f2f094ed/prowler-3.3.2.tar.gz"
+  sha256 "d35096c1bd619214c7ec19d9cf0a88dc1cec06b3bcda6d4ab7ac303318227958"
   license "Apache-2.0"
 
   bottle do
-    sha256 cellar: :any,                 arm64_ventura:  "5016cc7cd71de4d30e01957f55abd9977fbb27bcd55ac78ff329767a2b8c9985"
-    sha256 cellar: :any,                 arm64_monterey: "347e1198be6c02821dd16781bc7317c214a0d6398ed5e36085c0b370c8d280b5"
-    sha256 cellar: :any,                 arm64_big_sur:  "0772811ac17e83d714ec8ae7e654ea99d6de37047009eadff9bcda0b9ceed939"
-    sha256 cellar: :any,                 ventura:        "9823ba2a7e648933e30ee65158dce37f529c7918fa7e8e91b7cd093f4846a9ba"
-    sha256 cellar: :any,                 monterey:       "c86aa99a647d10295eb1a1e059056ff1930e9b210ea7c2f071fa1a80267097a1"
-    sha256 cellar: :any,                 big_sur:        "b4b4be7581a808bc6bb90c75bd2b408c17945d2eb93ce117f8e68547d76253bd"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "f4ebd7a49475663954c457f7e0dc73d3cecf35463b5d064ef8030d6168382074"
+    sha256 cellar: :any,                 arm64_ventura:  "84c630a30ef60f8ab60300e688f7c6ba86ec2d13b85b3573e56513ca5a43da96"
+    sha256 cellar: :any,                 arm64_monterey: "7ddae2540fd6b80472a81559cb335a00f3563af610fb0508e60c3a7f76b90fba"
+    sha256 cellar: :any,                 arm64_big_sur:  "6939612fe707a3b9404ca4edc568b62ca89ed2a9628ebd5415895a173c06232a"
+    sha256 cellar: :any,                 ventura:        "2f4d7d3fdf55af38a91f1f74ca1cbaf70447dc2a0841fd716ea92c494db8832b"
+    sha256 cellar: :any,                 monterey:       "bf3d82618e75e4c06901a9b80ef5ab8d36d2396d6643f94b8b3b080a601382e2"
+    sha256 cellar: :any,                 big_sur:        "0469b715821b8c536fba06114328f0df56bbd04636ec41da39ac1bcc3bc57a82"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "0cc45647827ee91c34733cea1c3f1f9d132a49da997ca72d08c6732899646561"
   end
 
-  depends_on "rust" => :build # for cryptography
+  # `pkg-config`, `rust`, and `openssl@1.1` are for cryptography.
+  depends_on "pkg-config" => :build
+  depends_on "rust" => :build
+  depends_on "cffi"
+  depends_on "openssl@1.1"
+  depends_on "pycparser"
   depends_on "python-tabulate"
   depends_on "python-typing-extensions"
   depends_on "python@3.11"
@@ -25,13 +30,13 @@ class Prowler < Formula
   depends_on "six"
 
   resource "about-time" do
-    url "https://files.pythonhosted.org/packages/e6/67/a3c982456707c5304017548b56ba5d9eec71b2f69a0f8e567622a0792bff/about-time-3.1.1.tar.gz"
-    sha256 "586b329450c9387d1ae8c42d2db4f5b4c57a54508d0f1b7bb00322ffd5ce9f9b"
+    url "https://files.pythonhosted.org/packages/1c/3f/ccb16bdc53ebb81c1bf837c1ee4b5b0b69584fd2e4a802a2a79936691c0a/about-time-4.2.1.tar.gz"
+    sha256 "6a538862d33ce67d997429d14998310e1dbfda6cb7d9bbfbf799c4709847fece"
   end
 
   resource "alive-progress" do
-    url "https://files.pythonhosted.org/packages/b8/ff/8de99fac214112dcb7c37eb0645acd19a0a6c94f8ebb60321388de587bae/alive-progress-2.4.1.tar.gz"
-    sha256 "089757c8197f27ad972ba27e1060f6db92368d83c736884e159034fd74865323"
+    url "https://files.pythonhosted.org/packages/6e/02/855ab750432a682260ba7e7fc1fff927043d48f87bd11bf1fbf4f2a2f301/alive-progress-3.1.0.tar.gz"
+    sha256 "c076a076591ff926ac19941bd73065e298118b6d38900d2d6ff53d2e355be3c1"
   end
 
   resource "arnparse" do
@@ -80,18 +85,18 @@ class Prowler < Formula
   end
 
   resource "azure-storage-blob" do
-    url "https://files.pythonhosted.org/packages/e8/72/a834f1a89f8b66e717d7cddc88ff182fb860130c4ff78f87a286eec602be/azure-storage-blob-12.14.1.zip"
-    sha256 "860d4d82985a4bfc7d3271e71275af330f54f330a754355435a7ba749ccde997"
+    url "https://files.pythonhosted.org/packages/43/20/cdd33ec1fdb22f5374332172c2be941e5bc598ef624ce2ccc49ba93569d5/azure-storage-blob-12.15.0.zip"
+    sha256 "f8b8d582492740ab16744455408342fb8e4c8897b64a8a3fc31743844722c2f2"
   end
 
   resource "boto3" do
-    url "https://files.pythonhosted.org/packages/f5/06/b3723636e094e833bba96b33cee496cd47ccc7362f5f3422d15d96644f7f/boto3-1.26.64.tar.gz"
-    sha256 "b0e3d078ec56bc858cc5edae4cda3eed2b1872055828cf5f22d83fc6f79a6d40"
+    url "https://files.pythonhosted.org/packages/1e/f6/252c68d619f4f0b6e9ac16ef3b699d2dee863bdec250e1a42e273d2ec1ec/boto3-1.26.90.tar.gz"
+    sha256 "1d33abca60643d14f90a9e77d94085ebfd8f8bf8f157f582466f6b3a141bab8c"
   end
 
   resource "botocore" do
-    url "https://files.pythonhosted.org/packages/60/91/cda3984eed3ad1cd58c192184b647ab45a5f696c19555959076e7be81cd2/botocore-1.29.64.tar.gz"
-    sha256 "2424c96547eeb9b76eb5bcee5b5bc01741834f525ecc4d538d71d269c7ba6662"
+    url "https://files.pythonhosted.org/packages/8b/64/40cad52ce8d57419842e080e6214a8c2f9885fa4c3f4741b00795bbbcc9f/botocore-1.29.100.tar.gz"
+    sha256 "ff6585df3dcef2057be5e54b45d254608d3769d726ea4ccd4e17f77825e5b13d"
   end
 
   resource "certifi" do
@@ -99,14 +104,9 @@ class Prowler < Formula
     sha256 "35824b4c3a97115964b408844d64aa14db1cc518f6562e8d7261699d1350a9e3"
   end
 
-  resource "cffi" do
-    url "https://files.pythonhosted.org/packages/2b/a8/050ab4f0c3d4c1b8aaa805f70e26e84d0e27004907c5b8ecc1d31815f92a/cffi-1.15.1.tar.gz"
-    sha256 "d400bfb9a37b1351253cb402671cea7e89bdecc294e8016a707f6d1d8ac934f9"
-  end
-
   resource "charset-normalizer" do
-    url "https://files.pythonhosted.org/packages/96/d7/1675d9089a1f4677df5eb29c3f8b064aa1e70c1251a0a8a127803158942d/charset-normalizer-3.0.1.tar.gz"
-    sha256 "ebea339af930f8ca5d7a699b921106c6e29c617fe9606fa7baa043c1cdae326f"
+    url "https://files.pythonhosted.org/packages/ff/d7/8d757f8bd45be079d76309248845a04f09619a7b17d6dfc8c9ff6433cac2/charset-normalizer-3.1.0.tar.gz"
+    sha256 "34e0a2f9c370eb95597aae63bf85eb5e96826d81e3dcf88b8886012906f509b5"
   end
 
   resource "click" do
@@ -130,8 +130,8 @@ class Prowler < Formula
   end
 
   resource "cryptography" do
-    url "https://files.pythonhosted.org/packages/12/e3/c46c274cf466b24e5d44df5d5cd31a31ff23e57f074a2bb30931a8c9b01a/cryptography-39.0.0.tar.gz"
-    sha256 "f964c7dcf7802d133e8dbd1565914fa0194f9d683d82411989889ecd701e8adf"
+    url "https://files.pythonhosted.org/packages/15/d9/c679e9eda76bfc0d60c9d7a4084ca52d0631d9f24ef04f818012f6d1282e/cryptography-40.0.1.tar.gz"
+    sha256 "2803f2f8b1e95f614419926c7e6f55d828afc614ca5ed61543877ae668cc3472"
   end
 
   resource "detect-secrets" do
@@ -189,14 +189,9 @@ class Prowler < Formula
     sha256 "032e81d534a88ec1736d03f780ba073f047a06c478b06e2937486f334e955c51"
   end
 
-  resource "pycparser" do
-    url "https://files.pythonhosted.org/packages/5e/0b/95d387f5f4433cb0f53ff7ad859bd2c6051051cebbb564f139a999ab46de/pycparser-2.21.tar.gz"
-    sha256 "e644fdec12f7872f86c58ff790da456218b10f863970249516d60a5eaca77206"
-  end
-
   resource "pydantic" do
-    url "https://files.pythonhosted.org/packages/fd/8f/3f7e88b507dbdfec8f1f914294aa8831edffb03d668799c65b4b46331c8a/pydantic-1.9.2.tar.gz"
-    sha256 "8cb0bc509bfb71305d7a59d00163d5f9fc4530f0881ea32c74ff4f74c85f3d3d"
+    url "https://files.pythonhosted.org/packages/43/5f/e53a850fd32dddefc998b6bfcbda843d4ff5b0dcac02a92e414ba6c97d46/pydantic-1.10.7.tar.gz"
+    sha256 "cfc83c0678b6ba51b0532bea66860617c4cd4251ecf76e9846fa5a9f3454e97e"
   end
 
   resource "PyJWT" do
@@ -235,16 +230,20 @@ class Prowler < Formula
   end
 
   resource "urllib3" do
-    url "https://files.pythonhosted.org/packages/c5/52/fe421fb7364aa738b3506a2d99e4f3a56e079c0a798e9f4fa5e14c60922f/urllib3-1.26.14.tar.gz"
-    sha256 "076907bf8fd355cde77728471316625a4d2f7e713c125f51953bb5b3eecf4f72"
+    url "https://files.pythonhosted.org/packages/21/79/6372d8c0d0641b4072889f3ff84f279b738cd8595b64c8e0496d4e848122/urllib3-1.26.15.tar.gz"
+    sha256 "8a388717b9476f934a21484e8c8e61875ab60644d29b9b39e11e4b9dc1c6b305"
   end
 
   resource "XlsxWriter" do
-    url "https://files.pythonhosted.org/packages/6a/31/f94f5707827ecd84f3fa03e55e263b9aeddb7da4ae0f7f1541e214e81b15/XlsxWriter-3.0.8.tar.gz"
-    sha256 "ec77335fb118c36bc5ed1c89e33904d649e4989df2d7980f7d6a9dd95ee5874e"
+    url "https://files.pythonhosted.org/packages/bf/dd/2a2ebee045f8e86b40468f3ca44dbcf86607f8282c74dfd9e87b00db12b4/XlsxWriter-3.0.9.tar.gz"
+    sha256 "7216d39a2075afac7a28cad81f6ac31b0b16d8976bf1b775577d157346f891dd"
   end
 
   def install
+    # Ensure that the `openssl` crate picks up the intended library.
+    ENV["OPENSSL_DIR"] = Formula["openssl@1.1"].opt_prefix
+    ENV["OPENSSL_NO_VENDOR"] = "1"
+
     virtualenv_install_with_resources
   end
 
@@ -253,7 +252,7 @@ class Prowler < Formula
     assert_match "rds", shell_output("#{bin}/prowler aws --list-services")
 
     assert_match "NoCredentialsError -- Unable to locate credentials",
-      shell_output("#{bin}/prowler aws --quick-inventory 2>&1")
+      shell_output("#{bin}/prowler aws --quick-inventory 2>&1", 1)
 
     assert_match "Prowler #{version}", shell_output("#{bin}/prowler -v")
   end

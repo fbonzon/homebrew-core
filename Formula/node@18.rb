@@ -1,8 +1,8 @@
 class NodeAT18 < Formula
   desc "Platform built on V8 to build network applications"
   homepage "https://nodejs.org/"
-  url "https://nodejs.org/dist/v18.14.0/node-v18.14.0.tar.xz"
-  sha256 "42ef9dd31993d5c8e82b0ab0969135093e6a296efa27b1be9afc04ac00f0267a"
+  url "https://nodejs.org/dist/v18.15.0/node-v18.15.0.tar.xz"
+  sha256 "8e44d65018ff973284195c23186469a0ea4082e97ec4200e5f5706d5584daa37"
   license "MIT"
 
   livecheck do
@@ -11,13 +11,14 @@ class NodeAT18 < Formula
   end
 
   bottle do
-    sha256 arm64_ventura:  "8f2de2838e0620c845a3b8e644dbe7fadfc2d964db454b841959aec8424d1d13"
-    sha256 arm64_monterey: "e33ee65f56d165d71cd1cd0ae96e64262f3c42ffe98998612308eb0a82a6e698"
-    sha256 arm64_big_sur:  "af5c73882135e40cc6198ae51af8c7affd09baa3481d338e948e1f1d884d9cc2"
-    sha256 ventura:        "2f90d7cf3f3b0331f488ec45a22fbb155d1a4d57d0eb9b3fbb08667243b27fd1"
-    sha256 monterey:       "bcab358f16d7c508010fa6cd1c355158805034e1b00bc33e0b6b2ddde1871fe1"
-    sha256 big_sur:        "edd1a18ceeb565f8cc9a307a611f69e3d5c33c4da0e825635075f86ee0096839"
-    sha256 x86_64_linux:   "b09f5d3391de76be288bb43a709b82bb5f62fb575504a5ea7aeb7cf5f95e925f"
+    rebuild 1
+    sha256 arm64_ventura:  "bcbe5b65b0a0118b4af1825b7f4c8266ecd5cb2cc4a9ddc2b83698ac7f41b456"
+    sha256 arm64_monterey: "f2a994e36985857027594565d0d5d0a4ce086ce2b84f94d53c983f2e33282828"
+    sha256 arm64_big_sur:  "817ebac06a44b6caf5174046e93c2f61a1d33c96705a7b70542f1891737851ef"
+    sha256 ventura:        "971d9e3c187e07010cace1ed4060fea6e1e39954c774d4c71f26006e67fb8885"
+    sha256 monterey:       "28e65c8b98dbd64b1857e913da8fbce6820cf9ba4fd3df32b99210641f8e869f"
+    sha256 big_sur:        "2b6b7f8b86d36e5e25d45ac8d9542a869d7887e1d29ef5d659d05f100da02b4e"
+    sha256 x86_64_linux:   "f0d65d6c8c3644edcf5a01353a45f1dd2918e987501058a56394cfde87545920"
   end
 
   keg_only :versioned_formula
@@ -55,7 +56,7 @@ class NodeAT18 < Formula
     ENV.llvm_clang if OS.mac? && (DevelopmentTools.clang_build_version <= 1100)
 
     # make sure subprocesses spawned by make are using our Python 3
-    ENV["PYTHON"] = which("python3.10")
+    ENV["PYTHON"] = which("python3.11")
 
     args = %W[
       --prefix=#{prefix}

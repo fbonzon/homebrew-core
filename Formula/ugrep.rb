@@ -1,18 +1,18 @@
 class Ugrep < Formula
   desc "Ultra fast grep with query UI, fuzzy search, archive search, and more"
   homepage "https://github.com/Genivia/ugrep"
-  url "https://github.com/Genivia/ugrep/archive/v3.9.7.tar.gz"
-  sha256 "7f44e2198e2dc3ad1ed88759ece848364c4ba632aca60aefe9c53d5b0c584628"
+  url "https://github.com/Genivia/ugrep/archive/v3.11.1.tar.gz"
+  sha256 "0a36d7bb62c49262b433eb301d8de6b90233a23446a71484738cd35650cc5c91"
   license "BSD-3-Clause"
 
   bottle do
-    sha256                               arm64_ventura:  "5a6943785d20705a7682b4fc7a0fa790e42390af58ae718b7167574dc5d15f57"
-    sha256                               arm64_monterey: "23a245f17b740fe12ec7c3c9cdd23190b20821ab50acb9b56d5ed042463dd66d"
-    sha256                               arm64_big_sur:  "3cb38fcd011a0aa61c9a4ca66c17ffe117d13b405670c0767b594b51ef7ad929"
-    sha256                               ventura:        "8eac7666d9a6806683d4f53cd77b6fe7e3296b73ffc5041f57cc1c13e6a841f3"
-    sha256                               monterey:       "132e7c6ffb9891c30d4a8f20a60b72e8d0582af1aa2369b15d01482c16d75a51"
-    sha256                               big_sur:        "89d7b923b2552a13741fcc12a90c1583a8af67470602cc647667af8b5bc05957"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "124fa40579007aede44d067538122e28b7a3171a8df3361d65d1057981e111ad"
+    sha256                               arm64_ventura:  "1d999b433fff846912281885cab3e1796ed54a27dcdd1cc691bfa9faaaf16a87"
+    sha256                               arm64_monterey: "e2f01ad6bc9b15f6a76d95691644c1535f1f3e8f8bee667951e5c9d788baadde"
+    sha256                               arm64_big_sur:  "543dcb4b528132479550bf97a260e972e9df72cfd7e59ce7f8d897c8b9e0f3e4"
+    sha256                               ventura:        "985ea8f1bcc8e9693f903776e902b077cba91e04d79511b205b3be16744f947a"
+    sha256                               monterey:       "fc320143098915a7cc7dab88b5dc9c2007c3a1e89757dc17d9842992de23213d"
+    sha256                               big_sur:        "74c21257da66ec0a547eae21244fd99605c3766ca3b09fdb6d9a7f87915a19aa"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "94182602e9acd3b23e2609d44198fdeb8d4504f2bd1c577e70585e256dc8d227"
   end
 
   depends_on "pcre2"

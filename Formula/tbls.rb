@@ -1,19 +1,19 @@
 class Tbls < Formula
   desc "CI-Friendly tool for document a database"
   homepage "https://github.com/k1LoW/tbls"
-  url "https://github.com/k1LoW/tbls/archive/refs/tags/v1.61.0.tar.gz"
-  sha256 "fdd56b014ce94a26753adb16f5ef4e3f8f7f3ce24b0b3febd9b1679318829bf1"
+  url "https://github.com/k1LoW/tbls/archive/refs/tags/v1.64.1.tar.gz"
+  sha256 "2fe72ac714320da44ffa2e1f36393733eccb9d1a91f88515624bfe12b5c8ccae"
   license "MIT"
   head "https://github.com/k1LoW/tbls.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "729453d3b04faf29528bc133ee9b8b1b166bcb7044a753c4b52db50077fbe299"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "1e43099e14c7efc30f77844fcad0e32816d5133d6805089b527013d5b6a4d6da"
-    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "fdb7eebc8c100a130385bcc951aecb703f8f3878c10ceec1514c0075ecb19248"
-    sha256 cellar: :any_skip_relocation, ventura:        "c8ad7e1d10a1389b7b6a95c876587668bf72550ea7edb6ff8dee08096b2bd15e"
-    sha256 cellar: :any_skip_relocation, monterey:       "0da5d42181b9336f4da6a8f52715fc9e53d3b1611fdf14dbbacc76ab497d4b79"
-    sha256 cellar: :any_skip_relocation, big_sur:        "4247d628694291a3abbf6e093ec916e40e82153ae8b9dd1574c62229c0db881c"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "77ef1ac3deb71ede5b58c4e6f9ee4925e2e39878ad5bfc281957db28dc2abb74"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "0685647235f83c8fb3f072e20f800b1ba532df6d67bae1a588299386083a8edf"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "8275e5b4804f197951bf96d5fcc06310104e2a78003d00c4b0cb2fa3bd4677c0"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "a5e12f7d11ccea0eabd8b2d5205e8ce8bb55e51988b80c0cccafab6ddc581e93"
+    sha256 cellar: :any_skip_relocation, ventura:        "0bf26b449a48131d87e44142b787833ee2a81e43a66a3ce4046a401b75e80de6"
+    sha256 cellar: :any_skip_relocation, monterey:       "677e4907be97cc15be0df0f9bf37380df86e728e4176afcddc65457321dcfe31"
+    sha256 cellar: :any_skip_relocation, big_sur:        "68201f261548fb7ec639798b715935b83117e90d91fad5e6266142aeca19796f"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "25316d7dbd0914590d9c6ba1d0ac7e55eaa2769700a3f5b3aef77c1d50c726ee"
   end
 
   depends_on "go" => :build
@@ -22,7 +22,7 @@ class Tbls < Formula
     ldflags = %W[
       -s -w
       -X github.com/k1LoW/tbls.version=#{version}
-      -X github.com/k1LoW/tbls.date=#{time.rfc3339}
+      -X github.com/k1LoW/tbls.date=#{time.iso8601}
       -X github.com/k1LoW/tbls/version.Version=#{version}
     ]
     system "go", "build", *std_go_args(ldflags: ldflags)

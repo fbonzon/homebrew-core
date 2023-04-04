@@ -2,8 +2,8 @@ class Vim < Formula
   desc "Vi 'workalike' with many additional features"
   homepage "https://www.vim.org/"
   # vim should only be updated every 50 releases on multiples of 50
-  url "https://github.com/vim/vim/archive/v9.0.1250.tar.gz"
-  sha256 "8d8c82de18b1539195ff1b1ba3e68ca0a5b3c7cd649270f771eacbde998bb505"
+  url "https://github.com/vim/vim/archive/v9.0.1400.tar.gz"
+  sha256 "b22586082b5c9c3d31e6830f787b425d114b23d9b6a195bcbd9c2c2a4a30ac49"
   license "Vim"
   head "https://github.com/vim/vim.git", branch: "master"
 
@@ -17,16 +17,18 @@ class Vim < Formula
   end
 
   bottle do
-    sha256 arm64_ventura:  "52f32fbe651a67e835de9da1195f1e25a87e74af1307b90dfd21221746e1b7c6"
-    sha256 arm64_monterey: "ca77787b8c6faa6f644538c8795985bf1926f8248ee9a95faf0cbc017faca686"
-    sha256 arm64_big_sur:  "0e88238cf27264ab7e72b799f78463ee7b78235a075bd4fc25e7ba9caafd0e1c"
-    sha256 ventura:        "302e13e711dd3385a60b07f5979fa9a932f9ccc2b86efcac7bfb8c99419390e9"
-    sha256 monterey:       "f253a1f8e145cb9d5c41e2e051348c34635ee664ded8beeee0b5d457efa34e9b"
-    sha256 big_sur:        "ac80b2dc5ba4c2aa1b06840d096021e57e7f9e22780cee7b9bf7a40d38120b88"
-    sha256 x86_64_linux:   "b2700962e1aa8f0dd6120f803f3af14ada95f59de707c99903a7c10078d3a2e6"
+    rebuild 1
+    sha256 arm64_ventura:  "b03fe418a562cf5db224ad4cd3f1c3ca9703d0bab4e8b46020c9ef1f70460772"
+    sha256 arm64_monterey: "bc5f675e68af3e8af503a143c7d0d37ef6c38e5c95cabc4e81517fd24ab60b9c"
+    sha256 arm64_big_sur:  "006d4ff67ad29c2cb4ee258e3e267ca785f8675cdfb013f37d095fa7eb8749f3"
+    sha256 ventura:        "6eee5768bcb38d35d12457dca71fe7de47b6694cbec7d5b4339fc754c1dc3407"
+    sha256 monterey:       "c7190bc3231fb2977839a180f740bc30fe97542f3faf141a9d039da5ba293986"
+    sha256 big_sur:        "f48e5ea1b1b4f8e121081ab21279afc72afaaa4731a738697938f3dfb7213f8b"
+    sha256 x86_64_linux:   "aeddc31595f3f16c4ddecfa1be5838525a4991db38ac7b2c95efc6c56977e9ee"
   end
 
   depends_on "gettext"
+  depends_on "libsodium"
   depends_on "lua"
   depends_on "ncurses"
   depends_on "perl"
@@ -87,5 +89,6 @@ class Vim < Formula
     system bin/"vim", "-T", "dumb", "-s", "commands.vim", "test.txt"
     assert_equal "hello python3", File.read("test.txt").chomp
     assert_match "+gettext", shell_output("#{bin}/vim --version")
+    assert_match "+sodium", shell_output("#{bin}/vim --version")
   end
 end

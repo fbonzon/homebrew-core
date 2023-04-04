@@ -3,18 +3,18 @@ class Glib < Formula
 
   desc "Core application library for C"
   homepage "https://developer.gnome.org/glib/"
-  url "https://download.gnome.org/sources/glib/2.74/glib-2.74.5.tar.xz"
-  sha256 "ceba83a5999ceb31a4c4fc9921207cb9ffffd2ab1d6ec03c162d3f608a5c14c8"
+  url "https://download.gnome.org/sources/glib/2.76/glib-2.76.1.tar.xz"
+  sha256 "43dc0f6a126958f5b454136c4398eab420249c16171a769784486e25f2fda19f"
   license "LGPL-2.1-or-later"
 
   bottle do
-    sha256 arm64_ventura:  "dbc8e8fdf0da9f4df7b4a3f576dd55ec4fc7504b71dbdfebaf4c380cb556815b"
-    sha256 arm64_monterey: "2e24a0b4583ef8929a1792db8aad7199c446a5977f34b4626e5a1397a99b7413"
-    sha256 arm64_big_sur:  "69a7d4a0a7351ffcc5b83023a03c254da1769823a1677905f6cdb7665b86b64c"
-    sha256 ventura:        "1140c54047010217eedaa2521373d7d5f23e5da6b286ab6da8c8331c46d3125e"
-    sha256 monterey:       "042c7d6a678ebde2d5d5915e8853e0542a41dfb38adfd728e52f4fd69e0b9169"
-    sha256 big_sur:        "6fa06fbb8ca2dfca1f445886ca0210efa5ed2827e9f53c79aa74ee5c9bde345e"
-    sha256 x86_64_linux:   "62d6d95b1e212b4f115b7e82fe928831701a4078b0e1ea8cfee12e1541d4e4d8"
+    sha256 arm64_ventura:  "39b3f6a5913c7532cf7b9abe759573a1d75370832dbf865a5d319fda54ee9513"
+    sha256 arm64_monterey: "0c20819875be1bcd53c04c80bbf3b42b6230f64690faaf7ed69abda5c21156ac"
+    sha256 arm64_big_sur:  "3c8fcab1cdc8dce5a1de2bad8d6ace5a1829d0a64840f9279770b14afef520e0"
+    sha256 ventura:        "d9ad7ba4f4a971ad5c7e9e04cf981421f9a2b014cb591b30687074e0330e5b3b"
+    sha256 monterey:       "258c55480e0ca4e72542ad071eb9cac590740a888ad485a427a3af83608b1aec"
+    sha256 big_sur:        "445fed7d16e95c6de6e28e01c991cd24ffc0189bba1f02607a99438bb87a6a0b"
+    sha256 x86_64_linux:   "610671eea58cf45d0bef507d18477ad505ff3fc4c7425386750b1ab5fac732fd"
   end
 
   depends_on "gettext" => :build
@@ -46,16 +46,18 @@ class Glib < Formula
 
   def install
     inreplace %w[gio/xdgmime/xdgmime.c glib/gutils.c], "@@HOMEBREW_PREFIX@@", HOMEBREW_PREFIX
+    # Avoid the sandbox violation when an empty directory is created outside of the formula prefix.
+    inreplace "gio/meson.build", "install_emptydir(glib_giomodulesdir)", ""
 
     # Disable dtrace; see https://trac.macports.org/ticket/30413
     # and https://gitlab.gnome.org/GNOME/glib/-/issues/653
     args = %W[
       --default-library=both
       --localstatedir=#{var}
-      -Diconv=auto
       -Dgio_module_dir=#{HOMEBREW_PREFIX}/lib/gio/modules
       -Dbsymbolic_functions=false
       -Ddtrace=false
+      -Druntime_dir=#{var}/run
     ]
 
     system "meson", "setup", "build", *args, *std_meson_args

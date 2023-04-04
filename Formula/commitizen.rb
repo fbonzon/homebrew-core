@@ -3,19 +3,19 @@ class Commitizen < Formula
 
   desc "Defines a standard way of committing rules and communicating it"
   homepage "https://commitizen-tools.github.io/commitizen/"
-  url "https://files.pythonhosted.org/packages/1d/32/45272adda791cb90eca6c3b2a3d1eb9bef2b2abe19a0dc6dca35965f4056/commitizen-2.40.0.tar.gz"
-  sha256 "8f1a09589ffb87bb17df17261423e88299bd63432dbfc4e6fc6657fea23dddc0"
+  url "https://files.pythonhosted.org/packages/1d/bf/8c90125fe1610f5530b55372b834562d67535f14db6637e1643714944233/commitizen-2.42.1.tar.gz"
+  sha256 "eac18c7c65587061aac6829534907aeb208405b8230bfd35ec08503c228a7f17"
   license "MIT"
   head "https://github.com/commitizen-tools/commitizen.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "81cdf86b4df1d5541d7b5d6d0c120386f47d1028a6534c8558c9537756d4da00"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "a309323e334a5266f2b3491fb7203ab1c6948d10519eebcff3d25ba3deb6c751"
-    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "38da220429fc0a454262af78adb21d505180973b424cc8401412285999829ca1"
-    sha256 cellar: :any_skip_relocation, ventura:        "2b4b92d74b6f4e1ea8b3b1b32d9e061c7cdeb0756bd0e88de90a59be32cfdf04"
-    sha256 cellar: :any_skip_relocation, monterey:       "b089dbff51f8f20c8b4cbc5d223b05eb90a17b83afffa8ee429cdce366c883f0"
-    sha256 cellar: :any_skip_relocation, big_sur:        "47e94a10bc1d37126cd2a691f21be4f8e42b2f8bd20893565536011ad139612b"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "370a0396fa7a6435f928468a2535994ec7feb0a59ded003babd8961822ba77ad"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "98f2817efbb8d2d649ed1b2a09b0f121f42e1d786a6ca9a5832c83ca2adad4e3"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "dbe409dcb9e41bd5282972697ad333677003e2ac22218f9513aee78a5b327248"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "a0b30e6f4b39ce76963642f6d1d1832d75d0c5f58f348b03f942a1bbd4a1d22b"
+    sha256 cellar: :any_skip_relocation, ventura:        "2730664db0d186592f41a394191c9954fbff5a21e3b92114f75833cb4734d60a"
+    sha256 cellar: :any_skip_relocation, monterey:       "01c7b69b276752e6c13e4db199121d65c3698791789dfeab7b5627ea38879c97"
+    sha256 cellar: :any_skip_relocation, big_sur:        "ba0dd99f13ed2dab7cc81230ccb5bd883a67c11db3249ea0c85bd16ba023b536"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "7ac19523de87fb697e091d7874daedd694601dea854ce1e42b44e59bfdc9ac97"
   end
 
   depends_on "python-typing-extensions"
@@ -58,8 +58,8 @@ class Commitizen < Formula
   end
 
   resource "prompt-toolkit" do
-    url "https://files.pythonhosted.org/packages/fb/93/180be2342f89f16543ec4eb3f25083b5b84eba5378f68efff05409fb39a9/prompt_toolkit-3.0.36.tar.gz"
-    sha256 "3e163f254bef5a03b146397d7c1963bd3e2812f0964bb9a24e6ec761fd28db63"
+    url "https://files.pythonhosted.org/packages/20/58/bbc8510ed1774ea2879b9996d2783d461c3c612904e230ff6954ce23c694/prompt_toolkit-3.0.37.tar.gz"
+    sha256 "d5d73d4b5eb1a92ba884a88962b157f49b71e06c4348b417dd622b25cdd3800b"
   end
 
   resource "questionary" do

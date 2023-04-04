@@ -1,13 +1,19 @@
 class Tart < Formula
   desc "macOS and Linux VMs on Apple Silicon to use in CI and other automations"
   homepage "https://github.com/cirruslabs/tart"
-  url "https://github.com/cirruslabs/tart/archive/refs/tags/0.37.0.tar.gz"
-  sha256 "9f2d4af148107f8fed38af0973fcfa6cf3a9b31bab529da8d89ada49f789d519"
+  # NOTE: 1.x uses non-open source license
+  # https://tart.run/blog/2023/02/11/changing-tart-license/
+  url "https://github.com/cirruslabs/tart/archive/refs/tags/0.38.0.tar.gz"
+  sha256 "ca6a46c2373eb9c9e105d2a80229f7cbcdb03d5ce800173ec01b78424f5a5d7f"
   license "AGPL-3.0-or-later"
 
+  livecheck do
+    skip "1.x uses non-open source license"
+  end
+
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "7e81e79cb93fda37264efabc6d50ee1bf3feee86d0e4126399302d104ee5680a"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "b4e4e6cfe12b59eab1379b7a22fc0490cd5d0aae78338de1e6c238825e2358c6"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "2938ae8b794f0875409753bc21f34b306e4ee39e73157d28fc2b1407b7bd39c1"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "be32fd68c2c54a9c874b4278ae8599116c1bb74464c1ae94064097839ae64e09"
   end
 
   depends_on "rust" => :build
@@ -35,7 +41,7 @@ class Tart < Formula
   test do
     ENV["TART_HOME"] = testpath/".tart"
     (testpath/"empty.ipsw").write ""
-    output = shell_output("tart create --from-ipsw #{testpath/"empty.ipsw"} test 2>&1", 1)
+    output = shell_output("#{bin}/tart create --from-ipsw #{testpath/"empty.ipsw"} test 2>&1", 1)
     assert_match "Unable to load restore image", output
   end
 end

@@ -1,13 +1,9 @@
 class Algol68g < Formula
   desc "Algol 68 compiler-interpreter"
   homepage "https://jmvdveer.home.xs4all.nl/algol.html"
-  # The upstream download url currently returns a 404 error.
-  # Until fixed, we can use a copy from OpenBSD.
-  url "https://ftp.openbsd.org/pub/OpenBSD/distfiles/algol68g-2.8.5.tar.gz"
-  mirror "https://jmvdveer.home.xs4all.nl/algol68g-2.8.5.tar.gz"
-  sha256 "0f757c64a8342fe38ec501bde68b61d26d051dffd45742ca58b7288a99c7e2d8"
+  url "https://jmvdveer.home.xs4all.nl/algol68g-3.1.5.tar.gz"
+  sha256 "ffbc0e035531477fa945138843765e3b95e656b7e4743e9f7ca034085e8bfed1"
   license "GPL-3.0-or-later"
-  revision 1
 
   livecheck do
     url "https://jmvdveer.home.xs4all.nl/en.download.algol-68-genie-current.html"
@@ -15,14 +11,13 @@ class Algol68g < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "767d41993bc543b9701cebb0017edd868373ad02f049dec77b87002ea19c3ed9"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "9fb1d792d8f777ca08e22372c092a74ac6db17225fd5f110e516b891a02ceeec"
-    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "1c0bde6c0a8205ec17f4d9a6c8084da44ec9c99beaf09eb7f4184042fcca2818"
-    sha256                               ventura:        "89660d0a2a30c4f7f6101449e4ecf48881ae986bc2bf8b57c3181c9084e193ad"
-    sha256                               monterey:       "90017642701aa5b8c7cc9bf49937dcd0efdd75a7d25792aa4f6bdbef30ac98b6"
-    sha256                               big_sur:        "14b3262c6aff2d74889e253bf8bf5dd132bd1ff5ed3847b4f6e5e5e7c8728913"
-    sha256                               catalina:       "38110a685728de5d40abb532e6e295d4a13cc55cc6a4d3357c66ff5ef031513e"
-    sha256                               x86_64_linux:   "849e07720d6bd959b0eb91073395850d91f97e9cd94ccd07c19a32db765916cb"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "70f1ac5cef718e73b1d689930bdca235009a5dac3da77d509c699845e46ca32e"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "12eda9ce2c067001ca232b9522b2405b32762808e9bf2e2b99a3a5c4db26674f"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "5dc67a535981ee8d02a486585b48f815a8f96b095b6d6904494c45954b9e49b3"
+    sha256                               ventura:        "fca7c60259d4cefa36df921995b6126ad7cca5a119fb38f87bec66e210982b44"
+    sha256                               monterey:       "9caa64a386cae3b32ec232f93c26a88433efb7900cbad10aa052a979615d0015"
+    sha256                               big_sur:        "3cc12581a64f6634e29614d071946ab5ba9016efad1fb07fbd4b35c0d509920a"
+    sha256                               x86_64_linux:   "47d5efe8f8b5e393e4e47e3c882c62b487f801973532d36b8f5f2c317edb1bed"
   end
 
   on_linux do

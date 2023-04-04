@@ -3,18 +3,18 @@ class Dotdrop < Formula
 
   desc "Save your dotfiles once, deploy them everywhere"
   homepage "https://deadc0de.re/dotdrop"
-  url "https://files.pythonhosted.org/packages/45/7f/a1c6ceae6a76bb15f9d05e5b72422ea47b4539da9bbb26d7c9bd46697273/dotdrop-1.12.9.tar.gz"
-  sha256 "2d76a63a28d60e583877e67b48955eb55d6a7e1483fa094600365c31af9105e8"
+  url "https://files.pythonhosted.org/packages/f3/e4/0ec0ce2fa73dac7afd4ef16faa3b15dca7d2d87313f2c42c758b850c5e9e/dotdrop-1.12.13.tar.gz"
+  sha256 "13e8605d15752bb24af0aba6ed2752a226585000e9259026605440fa83d9efdf"
   license "GPL-3.0-or-later"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "080b313b6760d70b802d2ae904db0027bec9c236b6be11070f632d39e7e44617"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "0d95141901f3c74e294d8d49527dc41d425a9d5164b2e10779eeddaec2eabc4d"
-    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "34933159c6a33e900fe2b90be264216b6092c94446be44a2a1050e68c7d2274f"
-    sha256 cellar: :any_skip_relocation, ventura:        "1dd1d0b51115e23bf23d7e1d0dc2f9ca022eca97fc497a3094cb84f1f481777d"
-    sha256 cellar: :any_skip_relocation, monterey:       "5379fe3771a64d985aac77b4fd41e519ceff7bc0b408b779310c93079cde0677"
-    sha256 cellar: :any_skip_relocation, big_sur:        "4bcf694e69cb6f7b44e5971703d2f76a6b28a36542adbb71a64375593bca717c"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "c373dd1d45eea4b26e5d9ab75f51e4b689d7f5605f45c79820924fc32c18abf4"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "eef0f8d9f2f6a331f47dcc2fddd9c4be3fdd6e783c85114d5d926e2406bea0d3"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "0c91575847d315a989956e05d8e2e2d63f36c02c128c36bf408f2559da617624"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "980dc34c2ea338292e195d541817d0ff46d665b2555997cc6572a5f555f0c574"
+    sha256 cellar: :any_skip_relocation, ventura:        "c584cd1b71e9bf86c69129488afb4734468eafd887f0aa868e016eaf618efbc6"
+    sha256 cellar: :any_skip_relocation, monterey:       "75cd8ebc1d2b2f32198e52563cb2461fc0622c36e9d0a8f37845c31f5732fa84"
+    sha256 cellar: :any_skip_relocation, big_sur:        "c8a13c82d250cafeca00aea88ace05e122ed7099063b00df7105da22c8cf48f8"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "b165cbd17fac70a428a988ab5004163fb08f991576885134d5460b7c05eac601"
   end
 
   depends_on "libmagic"

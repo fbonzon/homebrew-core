@@ -1,28 +1,27 @@
 class PhpCsFixer < Formula
   desc "Tool to automatically fix PHP coding standards issues"
   homepage "https://cs.symfony.com/"
-  # Bump to php 8.2 on the next release, if possible.
-  url "https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v3.14.3/php-cs-fixer.phar"
-  sha256 "296305c6a47aa48cbf07d8f0ec11837748f7210bb9772ea1d7ba6007310048da"
+  url "https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v3.16.0/php-cs-fixer.phar"
+  sha256 "0785737ec4b071f7d1fede1e44430b1fd8d15824ee9987a5e86338ae9ba65416"
   license "MIT"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "29a80b9fe1c17aadd7742f4943eaab422bf16c216c7b6d678f79f0114afad9e8"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "29a80b9fe1c17aadd7742f4943eaab422bf16c216c7b6d678f79f0114afad9e8"
-    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "29a80b9fe1c17aadd7742f4943eaab422bf16c216c7b6d678f79f0114afad9e8"
-    sha256 cellar: :any_skip_relocation, ventura:        "29a80b9fe1c17aadd7742f4943eaab422bf16c216c7b6d678f79f0114afad9e8"
-    sha256 cellar: :any_skip_relocation, monterey:       "29a80b9fe1c17aadd7742f4943eaab422bf16c216c7b6d678f79f0114afad9e8"
-    sha256 cellar: :any_skip_relocation, big_sur:        "29a80b9fe1c17aadd7742f4943eaab422bf16c216c7b6d678f79f0114afad9e8"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "5be3a49bb7ad7e96718c5b543eacba3fc5ba73a07696520cec8e07c010792ac3"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "e205f5eb7fc4f155b5521e1d1ff5e41d5aebc1af9e86bb602a6fbeef1cc1910d"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "e205f5eb7fc4f155b5521e1d1ff5e41d5aebc1af9e86bb602a6fbeef1cc1910d"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "e205f5eb7fc4f155b5521e1d1ff5e41d5aebc1af9e86bb602a6fbeef1cc1910d"
+    sha256 cellar: :any_skip_relocation, ventura:        "e205f5eb7fc4f155b5521e1d1ff5e41d5aebc1af9e86bb602a6fbeef1cc1910d"
+    sha256 cellar: :any_skip_relocation, monterey:       "e205f5eb7fc4f155b5521e1d1ff5e41d5aebc1af9e86bb602a6fbeef1cc1910d"
+    sha256 cellar: :any_skip_relocation, big_sur:        "e205f5eb7fc4f155b5521e1d1ff5e41d5aebc1af9e86bb602a6fbeef1cc1910d"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "3a445e663601751bd92b49e23045b4ccb2a6964b769c1141970cee5d4bb60edc"
   end
 
-  depends_on "php@8.1"
+  depends_on "php"
 
   def install
     libexec.install "php-cs-fixer.phar"
 
     (bin/"php-cs-fixer").write <<~EOS
-      #!#{Formula["php@8.1"].opt_bin}/php
+      #!#{Formula["php"].opt_bin}/php
       <?php require '#{libexec}/php-cs-fixer.phar';
     EOS
   end
@@ -37,7 +36,7 @@ class PhpCsFixer < Formula
       $this->foo('homebrew rox');
     EOS
 
-    system "#{bin}/php-cs-fixer", "fix", "test.php"
+    system bin/"php-cs-fixer", "fix", "test.php"
     assert compare_file("test.php", "correct_test.php")
   end
 end

@@ -1,19 +1,19 @@
 class Gnunet < Formula
   desc "Framework for distributed, secure and privacy-preserving applications"
   homepage "https://gnunet.org/"
-  url "https://ftp.gnu.org/gnu/gnunet/gnunet-0.19.2.tar.gz"
-  mirror "https://ftpmirror.gnu.org/gnunet/gnunet-0.19.2.tar.gz"
-  sha256 "86034d92ebf8f6623dad95f1031ded1466e064b96ffac9d3e9d47229ac2c22ff"
+  url "https://ftp.gnu.org/gnu/gnunet/gnunet-0.19.4.tar.gz"
+  mirror "https://ftpmirror.gnu.org/gnunet/gnunet-0.19.4.tar.gz"
+  sha256 "00a63df408d5987f5ba9a50441f2a77182bd9fb32f1e302ae563ac94e7ac009b"
   license "AGPL-3.0-or-later"
 
   bottle do
-    sha256 cellar: :any,                 arm64_ventura:  "0543b619298ccae88133115ffccd15a1730c624f40a9e5e20ec1878b55804361"
-    sha256 cellar: :any,                 arm64_monterey: "4696fa3d6293662600510af640969969e880e66a1c65c2963b0dd9bc75eca9c8"
-    sha256 cellar: :any,                 arm64_big_sur:  "bf15ce16a04b0378c1e46ce20b4d617d941f63806459e6f74ac114e43d4bc4f2"
-    sha256 cellar: :any,                 ventura:        "3331d5f4be5c0652cca294494a48ed2f4047a97bbfa1786df48cba3ed3cd94e1"
-    sha256 cellar: :any,                 monterey:       "d3018c0877061f329a003b85acf93122cc8e079d0aa1b609e2873a083a63d992"
-    sha256 cellar: :any,                 big_sur:        "e32dc7beb10416719765d0e258d2b14478ebd68e412c9a30ea891e4704269d24"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "5357b90ea207ea84fdbb18d774f2202eb6988aa64c8b984b862d901e757452e5"
+    sha256 cellar: :any,                 arm64_ventura:  "514ee11b8630e669cda7e0d1b0e2c745162e2f86b4c2dfb6eb788360245937b0"
+    sha256 cellar: :any,                 arm64_monterey: "d6a203f6fc633b95ef2389462491fb77185bff0b0ca0a3c622557894fac2e691"
+    sha256 cellar: :any,                 arm64_big_sur:  "2b53b22594fea3e621e3b05454df32c18b46c34d616c47947e12a6899326a09f"
+    sha256 cellar: :any,                 ventura:        "38e7c11e9bc791cfabcef325aeadf96d3f6af9b1a395be3713448cf300b2f9f1"
+    sha256 cellar: :any,                 monterey:       "4c661ee410bc6dae1f5e2f60bcd8bf4a1e0bc0384c017f20f4662cd781b1d539"
+    sha256 cellar: :any,                 big_sur:        "9084cdded8f4fefa9586551fbb98ef34539230ae73602b1c0b5024d13b11238b"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "c73b33d353fb74889f491e2452670af8b76d0e5a2cd2b60dfd9e9a7173aef4f7"
   end
 
   depends_on "pkg-config" => :build
@@ -29,13 +29,6 @@ class Gnunet < Formula
 
   uses_from_macos "curl"
   uses_from_macos "sqlite"
-
-  # Patch for LOGIN_NAME_MAX not defined on macOS
-  # Remove in 0.19.3
-  patch do
-    url "https://git.gnunet.org/gnunet.git/patch/?id=613554cc80f481025def331ac5a7ab111510ce0f"
-    sha256 "02d498dd85c351de7a89fecfa5b78c9ee32abd1a58188264c93cf84ebd3f4416"
-  end
 
   def install
     ENV.deparallelize if OS.linux?

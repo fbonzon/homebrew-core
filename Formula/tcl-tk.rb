@@ -5,6 +5,7 @@ class TclTk < Formula
   mirror "https://fossies.org/linux/misc/tcl8.6.13-src.tar.gz"
   sha256 "43a1fae7412f61ff11de2cfd05d28cfc3a73762f354a417c62370a54e2caf066"
   license "TCL"
+  revision 2
 
   livecheck do
     url :stable
@@ -12,17 +13,14 @@ class TclTk < Formula
   end
 
   bottle do
-    sha256 arm64_ventura:  "53300b4a5e2d7ef71b25b5ecb7b1b20ae435234dd114d2163e643d5857b1de21"
-    sha256 arm64_monterey: "c5878a4780414050c132dfd8cefaf7f009d8809f55ee3049dd7122a54e50dea9"
-    sha256 arm64_big_sur:  "4cab30160b2e7d926c52ad639c53a1471844b114a15cd19b414829615385ad67"
-    sha256 ventura:        "afd13198b0dbcc0eb4352614129f1cb06a614cea6d7417fefea3e62b852c4935"
-    sha256 monterey:       "e175685883ef770c7220b5c0b3058acd61dedddc8bbefae348828b68cbeb6514"
-    sha256 big_sur:        "3d0f9ac84a5a01f5d9d241005b6fa93e1a4f356b329dd56746242ff402649d7f"
-    sha256 catalina:       "9a0d3538f62527944ea7905d32532ad8239f6a6dd45f94742a3b2cb72d9f1c10"
-    sha256 x86_64_linux:   "7183c92a7b716deaf436a4a468c6866936a9f1f2b145516c7e6d83f323369da0"
+    sha256 arm64_ventura:  "cfaaa962201282d27868ef10154b58b0da1e384c51dd5840f8aacb39494bfdfd"
+    sha256 arm64_monterey: "09869232f5179bc2e091975bdd50236bd9380ed951f6f106f1cd567614877b6b"
+    sha256 arm64_big_sur:  "3ad8857935360e19938383c3e79279165a776d91228b3d6671819b44c80affc3"
+    sha256 ventura:        "be57540682f3a049112b387673e10f0224b8b9be5d79441de5c5f532a6155610"
+    sha256 monterey:       "9d7f1d99f291bc333831b92751aee8dc3b36bc7d3c2d45af6615a50271adc64b"
+    sha256 big_sur:        "46ecb4df42daa830fcf8ba0f89b7a629a88c31a8e8506fefd5dfe437408ac641"
+    sha256 x86_64_linux:   "203cb94d30f94b19e6ca47beca843e83c31c0f07c87847c842b5cab6e85bab37"
   end
-
-  keg_only :provided_by_macos
 
   depends_on "openssl@1.1"
 
@@ -33,13 +31,13 @@ class TclTk < Formula
     depends_on "pkg-config" => :build
     depends_on "libx11"
     depends_on "libxext"
-
-    conflicts_with "page", because: "both install `page` binaries" # from tcllib
   end
 
+  conflicts_with "page", because: "both install `page` binaries"
+
   resource "critcl" do
-    url "https://github.com/andreas-kupries/critcl/archive/3.1.18.1.tar.gz"
-    sha256 "51bc4b099ecf59ba3bada874fc8e1611279dfd30ad4d4074257084763c49fd86"
+    url "https://github.com/andreas-kupries/critcl/archive/refs/tags/3.2.tar.gz"
+    sha256 "20061944e28dda4ab2098b8f77682cab77973f8961f6fa60b95bcc09a546789e"
   end
 
   resource "tcllib" do
@@ -66,6 +64,7 @@ class TclTk < Formula
   def install
     args = %W[
       --prefix=#{prefix}
+      --includedir=#{include}/tcl-tk
       --mandir=#{man}
       --enable-threads
       --enable-64bit

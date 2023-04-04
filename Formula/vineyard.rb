@@ -3,18 +3,18 @@ class Vineyard < Formula
 
   desc "In-memory immutable data manager. (Project under CNCF)"
   homepage "https://v6d.io"
-  url "https://github.com/v6d-io/v6d/releases/download/v0.12.2/v6d-0.12.2.tar.gz"
-  sha256 "677b3f3c925472dd1f65ce440815140650cc31eb5da44c73afbc9699e901d50e"
+  url "https://github.com/v6d-io/v6d/releases/download/v0.13.4/v6d-0.13.4.tar.gz"
+  sha256 "1b17ef3dac79d167766fa55f1b79d7e7b02231b0304d1f21b10c26b8429b22d4"
   license "Apache-2.0"
 
   bottle do
-    sha256 arm64_ventura:  "b66e87ba579da9ef55f4ff745a3b0707ea6f242432e9a4bd4c905c85684b4dd2"
-    sha256 arm64_monterey: "8ad20d32aca4526ff8a57889b4aa2f974768f823f5c59b6dccf86a1da2d38570"
-    sha256 arm64_big_sur:  "cb347dc01d72ea825f89342d1637a585974a93da2dda2eb17ef32d9671961bf3"
-    sha256 ventura:        "fa43b8cae186ec902798a58a330f0dce4a9810cf1599efb5f4c49dcb3832a453"
-    sha256 monterey:       "5e203e7c888d73f872526a2eca3e35f19f1f3d1c67f57fb90ba8d1336c7d60fc"
-    sha256 big_sur:        "6fbf33f14bf3c20a141fcc15503a2c3af6ec23123237ea93540500ac29809d21"
-    sha256 x86_64_linux:   "befda00abb4d046976abd358ab34514187d1bdf6d8c7d04e5d0eecbacc73e8fe"
+    sha256 arm64_ventura:  "bb8818a85c352446af35e88eda3b749834560d74a963a4f9271603341a63d402"
+    sha256 arm64_monterey: "c141409703a2af7682c85638eed00b34a21a780b5cbe8575327ad5f8bb5e8977"
+    sha256 arm64_big_sur:  "cc25441711697ad52c4e4a7e1868dca4796421c1411625627370b31f88e1e182"
+    sha256 ventura:        "4c9210a297c7764bdc01855d8ce3f1bb5064926879152b6270a37b1fedbc6706"
+    sha256 monterey:       "950cc20f2b97beb623b775ef7c844bfb94e80d47c0a773450e3b9956be362528"
+    sha256 big_sur:        "34d6e6e517ec3956a7e8defa6e1805c09f7eee81cb46ff6ae6278957f2810f60"
+    sha256 x86_64_linux:   "2f5ea9da25d8e14d2f877cf36eab9ba4e7c61cc0e7d91d8604bc116610811df7"
   end
 
   depends_on "cmake" => :build
@@ -27,10 +27,8 @@ class Vineyard < Formula
   depends_on "gflags"
   depends_on "glog"
   depends_on "libgrape-lite"
-  depends_on "nlohmann-json"
   depends_on "open-mpi"
   depends_on "openssl@1.1"
-  depends_on "tbb"
 
   fails_with gcc: "5"
 
@@ -44,8 +42,6 @@ class Vineyard < Formula
                     "-DCMAKE_CXX_STANDARD_REQUIRED=TRUE",
                     "-DPYTHON_EXECUTABLE=#{which(python)}",
                     "-DUSE_EXTERNAL_ETCD_LIBS=ON",
-                    "-DUSE_EXTERNAL_TBB_LIBS=ON",
-                    "-DUSE_EXTERNAL_NLOHMANN_JSON_LIBS=ON",
                     "-DBUILD_VINEYARD_TESTS=OFF",
                     "-DUSE_LIBUNWIND=OFF",
                     "-DOPENSSL_ROOT_DIR=#{Formula["openssl@1.1"].opt_prefix}",

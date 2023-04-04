@@ -3,19 +3,19 @@ class Snakefmt < Formula
 
   desc "Snakemake code formatter"
   homepage "https://github.com/snakemake/snakefmt/"
-  url "https://files.pythonhosted.org/packages/dd/2a/7e2bf9b7e61c23b39d15fbb4b5ea0e48c5ebca15be54b9887810621b24ef/snakefmt-0.8.1.tar.gz"
-  sha256 "73158bf48645603ead6f0aacbfe4f43cf8dc0fbd192fbac813a3e64baaee995f"
+  url "https://files.pythonhosted.org/packages/b8/c5/a8045ae37914c99f134fa05abfd2c1b47bd2cd08a10d294a45537c22a588/snakefmt-0.8.3.tar.gz"
+  sha256 "df31a9257e9670c9bef0d3efc22264f5ee7fa3e91dd9e062e97864c69c226258"
   license "MIT"
   head "https://github.com/snakemake/snakefmt.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "0bb8a4ad3d7179d4b3d0a83c9b6d0bb169662b17dee655f88d092c86c60d1d6b"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "50ba4aa16c13b7d5cc04ed2c27ae4e9841646c95f86bc50166a660bac3aa6177"
-    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "249dea34414960cfa9d8d38c936ce48fad6ca0d2233310cca1f4dd11b923f29f"
-    sha256 cellar: :any_skip_relocation, ventura:        "329b59822a904ebd347c7a722252a8d50374c198c44d9829402537c76e10e190"
-    sha256 cellar: :any_skip_relocation, monterey:       "e6567d6b7870482c1750b1242e4fac557578a5638240db425aab4411122958fb"
-    sha256 cellar: :any_skip_relocation, big_sur:        "e2d5043c74d16142c956ae25c2717bf9c16a12745c0a3d89239df9c28dfc9753"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "de1faae813213e2ffe111960ec7751a74627cbfd3d3a688d50e3647af57358d3"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "e96a2d41997698e3c1c89ffb37eb11694f528960b49798dec95046fccc52896d"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "ca3f3032bb5686a7584d4e9db7bf4f180e14c11da4acdad729b6c271c5386ca1"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "16cf32beb7a2886e60dd6f87728b2fa67d8199b19d3f2442b41dd02d08359861"
+    sha256 cellar: :any_skip_relocation, ventura:        "705c3c725a8b4160ad0ef02efb3f033c62ea290a0c5e0513235f29f5cf3b644c"
+    sha256 cellar: :any_skip_relocation, monterey:       "2d511bc2cd2eae9722940499b3c037d3e70820e2484ae5dadb17edf47f318eeb"
+    sha256 cellar: :any_skip_relocation, big_sur:        "8829ea81a3ad06d32f92d13c661616337a4da6f0376df5c51cb740799a3dedb3"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "48cedf117e7cc1e391f5f156f31183c4e0d536a668f3b47b8ca71ccf3e4b2a31"
   end
 
   depends_on "cmake" => :build

@@ -3,24 +3,29 @@ class Awscli < Formula
 
   desc "Official Amazon AWS command-line interface"
   homepage "https://aws.amazon.com/cli/"
-  url "https://github.com/aws/aws-cli/archive/2.9.21.tar.gz"
-  sha256 "75a005c9e67c17eeb91e040f1ef62d1ef3aef2da6cf14b3bb0f18515f490a1cd"
+  url "https://github.com/aws/aws-cli/archive/2.11.9.tar.gz"
+  sha256 "45fee6827d4ab0b3866846ceef8aee3ebd3afe499661de2cacff492ec5115d33"
   license "Apache-2.0"
   head "https://github.com/aws/aws-cli.git", branch: "v2"
 
   bottle do
-    sha256 cellar: :any,                 arm64_ventura:  "9840e068bf21b36578502904edf7a13c0396fd11d895e5e8dfb7ad92f9b235d5"
-    sha256 cellar: :any,                 arm64_monterey: "09b71731c42c2ef5d38b3741a2a9ac85008ea9b166a8b446c3ca3b75278d77a9"
-    sha256 cellar: :any,                 arm64_big_sur:  "f14cd6ea4caae9dada36ab8c73f6d3582c29a1e6d197f4c34fea14b07b6b0cac"
-    sha256 cellar: :any,                 ventura:        "e375533f7a18bf10ddaac572452ca887206a923caa4367356321add2b9621d8e"
-    sha256 cellar: :any,                 monterey:       "76983fe6490c7fe4aa8d61a76d0a6d8a7da25fdf83f0efe3a56592b5b477a70d"
-    sha256 cellar: :any,                 big_sur:        "3fe427d793b1b1671779ee592a4f15ef48ed148a623108062fa1090e61e4df2e"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "c06ce5cfbbcc16827e9d27c431c782e1eafcdb17c94118dd75409b9b06ee3169"
+    sha256 cellar: :any,                 arm64_ventura:  "858f207b10951dd3214191689634d594dfd34c12cbdb8251cb913c247dad5725"
+    sha256 cellar: :any,                 arm64_monterey: "9726ca01785c44bfb9d3607db3de92328bed2310e77e23703b40618d65e17a3a"
+    sha256 cellar: :any,                 arm64_big_sur:  "92b4cd6df39d55d586d01a7b5af529a95612cb7ddf48da1bb5e15d2650135f12"
+    sha256 cellar: :any,                 ventura:        "08964f0898139e9129b5c5602a9fcdfdaf19f4ec644664703db447b575443941"
+    sha256 cellar: :any,                 monterey:       "8094436d9ff0463757937db0c8a8687bc4e1d5a843e34ee85c0950c1a71591fc"
+    sha256 cellar: :any,                 big_sur:        "99d8d2e01bde5e77624172ff877f2abf6a5872181c5c8e1312799b57f52c2c1f"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "a4a3b08537f9695a2222c61937ab4b313e7afeffbb4071f64606468f21866b70"
   end
 
+  # `pkg-config`, `rust`, and `openssl@1.1` are for cryptography.
   depends_on "cmake" => :build
-  depends_on "rust" => :build # for cryptography
+  depends_on "pkg-config" => :build
+  depends_on "rust" => :build
+  depends_on "cffi"
   depends_on "docutils"
+  depends_on "openssl@1.1"
+  depends_on "pycparser"
   depends_on "python@3.11"
   depends_on "six"
 
@@ -28,16 +33,11 @@ class Awscli < Formula
 
   # Python resources should be updated based on setup.cfg. One possible way is:
   # 1. Run `pipgrip 'awscli @ #{url}' --sort`
-  # 2. Ignore `six`. Update all other PyPI packages
+  # 2. Ignore `docutils` and `six`. Update all other PyPI packages
 
   resource "awscrt" do
-    url "https://files.pythonhosted.org/packages/3b/ae/227b0ba4b8d59aea3c4fb226ff5d99163e999f926c4b79a2fc4f79a8c2c9/awscrt-0.16.9.tar.gz"
-    sha256 "ed8e03377ab2e1b676a653f497d6834f42d26bb25d02348c3935ff543f0da750"
-  end
-
-  resource "cffi" do
-    url "https://files.pythonhosted.org/packages/2b/a8/050ab4f0c3d4c1b8aaa805f70e26e84d0e27004907c5b8ecc1d31815f92a/cffi-1.15.1.tar.gz"
-    sha256 "d400bfb9a37b1351253cb402671cea7e89bdecc294e8016a707f6d1d8ac934f9"
+    url "https://files.pythonhosted.org/packages/d1/0f/b70b4ee10b4eff4c6db54cd7b9240c4fd47430b1abab3feea935f00463a3/awscrt-0.16.13.tar.gz"
+    sha256 "b7ec07435e178400369024450d118834a1c8b01ccfebe8140b82102fb161720d"
   end
 
   resource "colorama" do
@@ -46,13 +46,13 @@ class Awscli < Formula
   end
 
   resource "cryptography" do
-    url "https://files.pythonhosted.org/packages/e3/3f/41186b1f2fd86a542d399175f6b8e43f82cd4dfa51235a0b030a042b811a/cryptography-38.0.4.tar.gz"
-    sha256 "175c1a818b87c9ac80bb7377f5520b7f31b3ef2a0004e2420319beadedb67290"
+    url "https://files.pythonhosted.org/packages/15/d9/c679e9eda76bfc0d60c9d7a4084ca52d0631d9f24ef04f818012f6d1282e/cryptography-40.0.1.tar.gz"
+    sha256 "2803f2f8b1e95f614419926c7e6f55d828afc614ca5ed61543877ae668cc3472"
   end
 
   resource "distro" do
-    url "https://files.pythonhosted.org/packages/a6/a4/75064c334d8ae433445a20816b788700db1651f21bdb0af33db2aab142fe/distro-1.5.0.tar.gz"
-    sha256 "0e58756ae38fbd8fc3020d54badb8eae17c5b9dcbed388b17bb55b8a5928df92"
+    url "https://files.pythonhosted.org/packages/4b/89/eaa3a3587ebf8bed93e45aa79be8c2af77d50790d15b53f6dfc85b57f398/distro-1.8.0.tar.gz"
+    sha256 "02e111d1dc6a50abb8eed6bf31c3e48ed8b0830d1ea2a1b78c61765c2513fdd8"
   end
 
   resource "jmespath" do
@@ -65,11 +65,6 @@ class Awscli < Formula
     sha256 "9f1cd16b1e86c2968f2519d7fb31dd9d669916f515612c269d14e9ed52b51650"
   end
 
-  resource "pycparser" do
-    url "https://files.pythonhosted.org/packages/5e/0b/95d387f5f4433cb0f53ff7ad859bd2c6051051cebbb564f139a999ab46de/pycparser-2.21.tar.gz"
-    sha256 "e644fdec12f7872f86c58ff790da456218b10f863970249516d60a5eaca77206"
-  end
-
   resource "python-dateutil" do
     url "https://files.pythonhosted.org/packages/4c/c4/13b4776ea2d76c115c1d1b84579f3764ee6d57204f6be27119f13a61d0a9/python-dateutil-2.8.2.tar.gz"
     sha256 "0123cacc1627ae19ddf3c27a5de5bd67ee4586fbdd6440d9748f8abb483d3e86"
@@ -80,9 +75,14 @@ class Awscli < Formula
     sha256 "8b7ce697a2f212752a35c1ac414471dc16c424c9573be4926b56ff3f5d23b7af"
   end
 
+  resource "ruamel-yaml-clib" do
+    url "https://files.pythonhosted.org/packages/d5/31/a3e6411947eb7a4f1c669f887e9e47d61a68f9d117f10c3c620296694a0b/ruamel.yaml.clib-0.2.7.tar.gz"
+    sha256 "1f08fd5a2bea9c4180db71678e850b995d2a5f4537be0e94557668cf0f5f9497"
+  end
+
   resource "urllib3" do
-    url "https://files.pythonhosted.org/packages/c5/52/fe421fb7364aa738b3506a2d99e4f3a56e079c0a798e9f4fa5e14c60922f/urllib3-1.26.14.tar.gz"
-    sha256 "076907bf8fd355cde77728471316625a4d2f7e713c125f51953bb5b3eecf4f72"
+    url "https://files.pythonhosted.org/packages/21/79/6372d8c0d0641b4072889f3ff84f279b738cd8595b64c8e0496d4e848122/urllib3-1.26.15.tar.gz"
+    sha256 "8a388717b9476f934a21484e8c8e61875ab60644d29b9b39e11e4b9dc1c6b305"
   end
 
   resource "wcwidth" do
@@ -95,6 +95,10 @@ class Awscli < Formula
   end
 
   def install
+    # Ensure that the `openssl` crate picks up the intended library.
+    ENV["OPENSSL_DIR"] = Formula["openssl@1.1"].opt_prefix
+    ENV["OPENSSL_NO_VENDOR"] = "1"
+
     # Temporary workaround for Xcode 14's ld causing build failure (without logging a reason):
     # ld: fatal warning(s) induced error (-fatal_warnings)
     # Ref: https://github.com/python/cpython/issues/97524
@@ -111,15 +115,10 @@ class Awscli < Formula
       ENV.prepend "LDFLAGS", "-L./build/temp.linux-x86_64-#{python_version}/deps/install/lib"
     end
 
-    # setuptools>=60 prefers its own bundled distutils, which is incompatible with docutils~=0.15
-    # Force the previous behavior of using distutils from the stdlib
-    # Remove when fixed upstream: https://github.com/aws/aws-cli/pull/6011
-    with_env(SETUPTOOLS_USE_DISTUTILS: "stdlib") do
-      virtualenv_install_with_resources
-    end
+    virtualenv_install_with_resources
     pkgshare.install "awscli/examples"
 
-    rm Dir[bin/"{aws.cmd,aws_bash_completer,aws_zsh_completer.sh}"]
+    rm bin.glob("{aws.cmd,aws_bash_completer,aws_zsh_completer.sh}")
     bash_completion.install "bin/aws_bash_completer"
     zsh_completion.install "bin/aws_zsh_completer.sh"
     (zsh_completion/"_aws").write <<~EOS

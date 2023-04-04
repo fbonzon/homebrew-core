@@ -1,24 +1,27 @@
 class Scalingo < Formula
   desc "CLI for working with Scalingo's PaaS"
   homepage "https://doc.scalingo.com/cli"
-  url "https://github.com/Scalingo/cli/archive/1.27.1.tar.gz"
-  sha256 "1a3ade5760a1f37b084b5260d19c9f6ebf974bed34b2e9578d7f54a66f98ae55"
+  url "https://github.com/Scalingo/cli/archive/1.28.2.tar.gz"
+  sha256 "b147258998a9c632fbaf89db5ddb1fe79ab1dc3ad4dfa2df4b3829223e1ca519"
   license "BSD-4-Clause"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "4fce8569d36ab00cbe2d6b388b9ee15988b04acdf782100efc02227242cd4fcc"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "3af168d141b1992635beda2422883f613d6fdbe1121a29df272c9b48beafc157"
-    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "96f6d6b25d6ab28a105b14fb23373f499050b913cbd0d712697355f5fe063bea"
-    sha256 cellar: :any_skip_relocation, ventura:        "3d94532fcec338b6f6a87cd926f192158c1da1199112e2bfb51de4fe3455049c"
-    sha256 cellar: :any_skip_relocation, monterey:       "191523580ec8b6f1786c5ae41c59abe4aa9a813f6c7311f8bdfb213a8ca897ee"
-    sha256 cellar: :any_skip_relocation, big_sur:        "39ace7f22a462b3b8a554ae01f3350cae404f607d2e1a96c24a7c570c9a34c85"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "418cfd6f3396b9b5d2905ca127c83ff29fd71664b70ae3abf53baf2b68f72eb9"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "a194d69f1d90c0f56c70f66d6c9cef72b3c9c2693e5b2d6db7c95a6827d945f8"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "ba82a3b9d0a7ca58a50186ad230167b7786df8c13f7ac26c5c75d8a9ec4d4615"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "f092b5493665ff06aa688c1f9a69e315940d6db096ceff1dcf9bcae84f190754"
+    sha256 cellar: :any_skip_relocation, ventura:        "1bd62898585a74c77e7f92c89037d407e7784b8b4e2360eb3bb343bfe5fa583c"
+    sha256 cellar: :any_skip_relocation, monterey:       "91b2788aa1d48af6e31abbf86c1a296f3fe84c12830e32a0b58357f66816ad61"
+    sha256 cellar: :any_skip_relocation, big_sur:        "1acd9e1b21b8463af10d6535c10bfeb6d38e0585ecb193599447851d4df38b8c"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "1f101af8e23bd06893957dce9c6b6fa4cb6a233db14cee1e342111d02eed693c"
   end
 
   depends_on "go" => :build
 
   def install
     system "go", "build", *std_go_args(ldflags: "-s -w"), "scalingo/main.go"
+
+    bash_completion.install "cmd/autocomplete/scripts/scalingo_complete.bash" => "scalingo"
+    zsh_completion.install "cmd/autocomplete/scripts/scalingo_complete.zsh" => "_scalingo"
   end
 
   test do

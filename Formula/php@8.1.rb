@@ -2,9 +2,9 @@ class PhpAT81 < Formula
   desc "General-purpose scripting language"
   homepage "https://www.php.net/"
   # Should only be updated if the new version is announced on the homepage, https://www.php.net/
-  url "https://www.php.net/distributions/php-8.1.15.tar.xz"
-  mirror "https://fossies.org/linux/www/php-8.1.15.tar.xz"
-  sha256 "cd450fb4ee50488c5bf5f08851f514e5a1cac18c9512234d9e16c3a1d35781a6"
+  url "https://www.php.net/distributions/php-8.1.17.tar.xz"
+  mirror "https://fossies.org/linux/www/php-8.1.17.tar.xz"
+  sha256 "b5c48f95b8e1d8624dd05fc2eab7be13277f9a203ccba97bdca5a1a0fb4a1460"
   license "PHP-3.01"
 
   livecheck do
@@ -13,13 +13,13 @@ class PhpAT81 < Formula
   end
 
   bottle do
-    sha256 arm64_ventura:  "93a27a214b0bee3ad529784fc7127e43267989a80cec89265a1c25101647dd14"
-    sha256 arm64_monterey: "a3016e6b0b27bb617357fe80e87f4c4a2c58c3329a02465eedbd49c2b236a4d1"
-    sha256 arm64_big_sur:  "ec6694385d81191794c582b13a5cd20a3e45eed02628676efbffc81301b72ce2"
-    sha256 ventura:        "43fcbbb91eddb08602860de6bd56137b71068951003df39d53a2b8a5ae095502"
-    sha256 monterey:       "f229854230d1ef748491a4e51d52de48d5a7dcf64af50c92e9815246da95d8dd"
-    sha256 big_sur:        "e7dfc4fe25356d5831a558185fdda415da45f031cb1e8b4c58909b77013fd712"
-    sha256 x86_64_linux:   "c31d720a81b30464474dc5db31d8b27422ff5ab81cb0850bc01e789d7d2f3643"
+    sha256 arm64_ventura:  "17b95562871d98d5052ee61800656a90e8531d6e44adb1eb6352f6fafe12bd23"
+    sha256 arm64_monterey: "c63eaec8e54c7ab77c725d647e35343dea00881f51b889b32c1fc0a0b104984d"
+    sha256 arm64_big_sur:  "e84872e4c8623521d8abe2f7e9b22d6f3a76ee90b2b7ebda82daa126a3618e57"
+    sha256 ventura:        "2d616e714cf8724261afcd1264f7a5bd8d6df6598cb7dc56ddfc0e00424a9bfe"
+    sha256 monterey:       "af679181c5eea08912ad9c956f60de85d9b7e1c2fd632fa040110038b1a734ea"
+    sha256 big_sur:        "6bc7bf481ab784bd90c47fdfee50940f3ed9e2fec7ae706f818ba64942714ac2"
+    sha256 x86_64_linux:   "650088fbfb3393fea5f239df8624bcda0a6bf2c40a76980a2a9604cc0211466c"
   end
 
   keg_only :versioned_formula
@@ -63,7 +63,7 @@ class PhpAT81 < Formula
 
   on_macos do
     # PHP build system incorrectly links system libraries
-    # see https://github.com/php/php-src/pull/3472
+    # see https://github.com/php/php-src/issues/10680
     patch :DATA
   end
 

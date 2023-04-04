@@ -1,20 +1,19 @@
 class Emqx < Formula
   desc "MQTT broker for IoT"
   homepage "https://www.emqx.io/"
-  url "https://github.com/emqx/emqx/archive/refs/tags/v5.0.15.tar.gz"
-  sha256 "8339b498be51aecfccdf0c423ab336e4272bd7e3abebd9c5bf241226dc656119"
+  url "https://github.com/emqx/emqx/archive/refs/tags/v5.0.21.tar.gz"
+  sha256 "1167eccc4bf04d7c6e124d03218e3d6dc7fcea255b530dd4bbe4fcc27b35b142"
   license "Apache-2.0"
   head "https://github.com/emqx/emqx.git", branch: "master"
 
   bottle do
-    rebuild 1
-    sha256 cellar: :any, arm64_ventura:  "0beef3c9b067cd7d1e85a70acffbeaf1b2d835d8af03fb450d9aca066721c000"
-    sha256 cellar: :any, arm64_monterey: "b283d3e14fcb1643ff97f1cb6581dc5584c86bf79746b8f2bc1b90d49c6d2c3c"
-    sha256 cellar: :any, arm64_big_sur:  "71b2ea50a469e427ce76dc7f83ca940e7527060fa6d9dc00bd77cb78b7abe0aa"
-    sha256 cellar: :any, ventura:        "7e0aef259ab4274b28b958bd76934d3d011d83785d9543661650279933e58bf1"
-    sha256 cellar: :any, monterey:       "b3eee5b5bb6d9ebbc4a4108df5d2ad28430b932d282119264fc1ed2af4576e41"
-    sha256 cellar: :any, big_sur:        "fce7177736a3e1285611fc8873cc60e36b5645ecb731e24fc0b40044b26bbdf7"
-    sha256               x86_64_linux:   "9423ebbb1fd5d800459a9f667f209d2e177310c383be3857eb54f865d4a78eef"
+    sha256 cellar: :any,                 arm64_ventura:  "8e00ea523cea4358eb95b6b59b50f007c505cdff208c90d5b1e24790139d07a6"
+    sha256 cellar: :any,                 arm64_monterey: "a6645430ccff7142edb251ec1475abfd825ea0a70a9619ae6c60b60c9c83c02a"
+    sha256 cellar: :any,                 arm64_big_sur:  "91dd349cc9e37e7848fc151c9abe2a15707cb9652185a096439a20661039348a"
+    sha256 cellar: :any,                 ventura:        "e9daab8c0ed995f404d6e9b5dec54630510c0c90903c3be7f36a3899319fb670"
+    sha256 cellar: :any,                 monterey:       "047e09bd19d36c0e30c089a6e4f29eda06893c2b835f859c793c4a57180160da"
+    sha256 cellar: :any,                 big_sur:        "e0dfd8e2b04859abecd813ad99f5bb6e14e341079d1430dfc1b69c793ac8bddb"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "7aef2f35b39222c694698569fced5402ea5c5bc1201cc7f5e27da244b4dc9978"
   end
 
   depends_on "autoconf"  => :build

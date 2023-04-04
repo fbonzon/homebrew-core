@@ -1,10 +1,10 @@
 class Gdal < Formula
   desc "Geospatial Data Abstraction Library"
   homepage "https://www.gdal.org/"
-  url "http://download.osgeo.org/gdal/3.6.2/gdal-3.6.2.tar.xz"
-  sha256 "35f40d2e08061b342513cdcddc2b997b3814ef8254514f0ef1e8bc7aa56cf681"
+  url "http://download.osgeo.org/gdal/3.6.3/gdal-3.6.3.tar.xz"
+  sha256 "3cccbed883b1fb99b913966aa3a650ad930e7c3afc714f5823f9754176ee49ea"
   license "MIT"
-  revision 2
+  revision 1
 
   livecheck do
     url "https://download.osgeo.org/gdal/CURRENT/"
@@ -12,13 +12,13 @@ class Gdal < Formula
   end
 
   bottle do
-    sha256 arm64_ventura:  "68818443a3b73c6f992ea9385a7719a650e717a2c62558cc41ab9b94dd3c44da"
-    sha256 arm64_monterey: "6feb0d2796a7819c73de82e603a8c35052a5643be8ceea8702d9bffa6e2f5ad9"
-    sha256 arm64_big_sur:  "73e2d3f993598fc08fa1ddd4e474f43d339523ccf5f75e9ef0d7c9b1ad9a244e"
-    sha256 ventura:        "ae69349026277eac66c50f43889f917db2382cfc648fb44fcc013acc0929d639"
-    sha256 monterey:       "07e8854ebdf402eae4f30cf02ceb56c31ff62b244a14aa185234fea81943ad0a"
-    sha256 big_sur:        "004583d3f9452726af7799635f7461435c005ca33d4a4eef3b7ff59288249be9"
-    sha256 x86_64_linux:   "b17aba9701031a2ad83668fcf5184bd5ee202e68150141de625dfb47ab4c7f6c"
+    sha256 arm64_ventura:  "66f7da03f7b695e02e30ba1194e94d9ef4f825505623a796c5c2bb2ae0cf7cda"
+    sha256 arm64_monterey: "1937eede30ad6babeeb8c92724a491e513fc49b847ada7c6201677e2e5de39e5"
+    sha256 arm64_big_sur:  "1d1014aee8a316764845110b350e9061fd368c35cd39e4dafc9dd6d6bd1feab8"
+    sha256 ventura:        "8691b64c3f67c54fd73a0fa4d26a86347a397fbe21fecb694d3b333aa70b2eeb"
+    sha256 monterey:       "74ecb143641aa6b2d55774a63d55c1dc2eda41e498d608b680e39171435ed08e"
+    sha256 big_sur:        "08bc30b21c64828c11448cc4eec6b71b1fb0d764306e2fc2fac48c7539a16b2c"
+    sha256 x86_64_linux:   "f24c8b24a954507ef72fe9f7d89c0f94603e5f54b5800ba326a852561e1ae98f"
   end
 
   head do
@@ -42,6 +42,7 @@ class Gdal < Formula
   depends_on "libdap"
   depends_on "libgeotiff"
   depends_on "libheif"
+  depends_on "liblerc"
   depends_on "libpng"
   depends_on "libpq"
   depends_on "libspatialite"
@@ -55,6 +56,7 @@ class Gdal < Formula
   depends_on "poppler"
   depends_on "proj"
   depends_on "python@3.11"
+  depends_on "qhull"
   depends_on "sqlite"
   depends_on "unixodbc"
   depends_on "webp"
@@ -78,20 +80,34 @@ class Gdal < Formula
   end
 
   def install
+    site_packages = prefix/Language::Python.site_packages(python3)
     # Work around Homebrew's "prefix scheme" patch which causes non-pip installs
     # to incorrectly try to write into HOMEBREW_PREFIX/lib since Python 3.10.
     inreplace "swig/python/CMakeLists.txt",
-              /(set\(INSTALL_ARGS "--single-version-externally-managed --record=record.txt")\)/,
-              "\\1 --install-lib=#{prefix/Language::Python.site_packages(python3)})"
+              'set(INSTALL_ARGS "--single-version-externally-managed --record=record.txt',
+              "\\0 --install-lib=#{site_packages} --install-scripts=#{bin}"
 
-    system "cmake", "-S", ".", "-B", "build",
-                    "-DBUILD_PYTHON_BINDINGS=ON",
-                    "-DPython_EXECUTABLE=#{which(python3)}",
-                    "-DENABLE_PAM=ON",
-                    "-DCMAKE_INSTALL_RPATH=#{lib}",
-                    *std_cmake_args
+    osgeo_ext = site_packages/"osgeo"
+    rpaths = [rpath, rpath(source: osgeo_ext)]
+    ENV.append "LDFLAGS", "-Wl,#{rpaths.map { |rp| "-rpath,#{rp}" }.join(",")}"
+    # keep C++ standard in sync with `abseil.rb`
+    args = %W[
+      -DENABLE_PAM=ON
+      -DBUILD_PYTHON_BINDINGS=ON
+      -DCMAKE_INSTALL_RPATH=#{rpaths.join(";")}
+      -DPython_EXECUTABLE=#{which(python3)}
+      -DGDAL_PYTHON_INSTALL_LIB=#{site_packages}
+      -DCMAKE_CXX_STANDARD=17
+    ]
+
+    # JavaVM.framework in SDK causing Java bindings to be built
+    args << "-DBUILD_JAVA_BINDINGS=OFF" if MacOS.version <= :catalina
+
+    system "cmake", "-S", ".", "-B", "build", *args, *std_cmake_args
     system "cmake", "--build", "build"
     system "cmake", "--install", "build"
+
+    bash_completion.install (share/"bash-completion/completions").children
   end
 
   test do

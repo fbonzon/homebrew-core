@@ -1,8 +1,8 @@
 class Armadillo < Formula
   desc "C++ linear algebra library"
   homepage "https://arma.sourceforge.io/"
-  url "https://downloads.sourceforge.net/project/arma/armadillo-11.4.3.tar.xz"
-  sha256 "87603263664988af41da2ca4f36205e36ea47a9281fa6cfd463115f3797a1da2"
+  url "https://downloads.sourceforge.net/project/arma/armadillo-12.2.0.tar.xz"
+  sha256 "b0dce042297e865add3351dad77f78c2c7638d6632f58357b015e50edcbd2186"
   license "Apache-2.0"
 
   livecheck do
@@ -11,13 +11,13 @@ class Armadillo < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_ventura:  "804270a91f73fd11df5f2162b0afa421a73f528ba65ae0f8ea5c3b2bb071de73"
-    sha256 cellar: :any,                 arm64_monterey: "17b254380bd6ac1642579bb82a65adcbe208713274e91420659970b58f793df8"
-    sha256 cellar: :any,                 arm64_big_sur:  "254cbed52a347b42dea42ad222445095aaf9e64ad712116f9ba31e91ea7c0f5c"
-    sha256 cellar: :any,                 ventura:        "30d2538ac034f552da94961192d4ad3536b23b734e69a002edc2f7ba33a4fe67"
-    sha256 cellar: :any,                 monterey:       "113938a6771b3f583baf4c5ee75011a3f7a20aa2544611fbc11901d9c38a5964"
-    sha256 cellar: :any,                 big_sur:        "1b1e5a2665f7d1cc6ca62a082993f2c10e14735d3887e3eff63ac64f43292d09"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "b2f202c54471b6b844287cd1fc5fbb6e3264901926cdde13fed22796f7a46123"
+    sha256 cellar: :any,                 arm64_ventura:  "6c2c968eca98dcfd366f0a60ef1b7c8cf350d98ff8c3942da37983fd7e91dbfc"
+    sha256 cellar: :any,                 arm64_monterey: "02f1dc5a1371832e81b20f84575b70981fb1b58c24754138fefa261a9aa39189"
+    sha256 cellar: :any,                 arm64_big_sur:  "386dbe260d96c506824a80eab03a5154e634cecd829fe8f5e60a9d41226bb746"
+    sha256 cellar: :any,                 ventura:        "5b632ed5d52df922550cada45f0b5f33329d7e36cc988353ee84cf99c1f3b13e"
+    sha256 cellar: :any,                 monterey:       "2bced19187812f8516aff3b44010a3ee9637b892514bc7826f07d491046d36c5"
+    sha256 cellar: :any,                 big_sur:        "c38d88da3a6c5f9f1b395b5ac70ca346529abb7dcaa66b66e5bf4e73fd444144"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "baf386d8d94e146528de0e8f6a100b0387307839ce9ea268703094dc2a2c1449"
   end
 
   depends_on "cmake" => :build
@@ -33,10 +33,6 @@ class Armadillo < Formula
 
     system "cmake", ".", "-DDETECT_HDF5=ON", "-DALLOW_OPENBLAS_MACOS=ON", *std_cmake_args
     system "make", "install"
-
-    # Avoid cellar path references that are invalidated by version/revision bumps
-    hdf5 = Formula["hdf5"]
-    inreplace include/"armadillo_bits/config.hpp", hdf5.prefix.realpath, hdf5.opt_prefix
   end
 
   test do

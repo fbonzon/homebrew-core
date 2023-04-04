@@ -1,9 +1,9 @@
 class Snort < Formula
   desc "Flexible Network Intrusion Detection System"
   homepage "https://www.snort.org"
-  url "https://github.com/snort3/snort3/archive/3.1.53.0.tar.gz"
-  mirror "https://fossies.org/linux/misc/snort3-3.1.53.0.tar.gz"
-  sha256 "e76429903cc56353ab21c0f4c0ec495054ba82f56d8d94943930bc0c3165be4c"
+  url "https://github.com/snort3/snort3/archive/3.1.58.0.tar.gz"
+  mirror "https://fossies.org/linux/misc/snort3-3.1.58.0.tar.gz"
+  sha256 "c2b37899db42e2db9a05089abbe0ba48633c6c48496d2c64565500b4f9061d78"
   license "GPL-2.0-only"
   head "https://github.com/snort3/snort3.git", branch: "master"
 
@@ -13,13 +13,13 @@ class Snort < Formula
   end
 
   bottle do
-    sha256 cellar: :any, arm64_ventura:  "cc9ae99099c5949fa2e764267f635f7482386ba6a788528b50ba8140b16cd9ee"
-    sha256 cellar: :any, arm64_monterey: "9e6b4aeb49804e672ff0c3bdfe264d5ff4f20baaac24470074458bbbbf79762c"
-    sha256 cellar: :any, arm64_big_sur:  "f2cb423e237525fc58cd22279bd1cdcfeb1479f6e1e62858d83f700d609bb572"
-    sha256 cellar: :any, ventura:        "90be55b30f3ea2cdff3856470ed4116402a387301c2020f333387f46a863de5a"
-    sha256 cellar: :any, monterey:       "d985b0984e483952d4cf9e06b66a0bf31209f693b68ccb783e0384088589260c"
-    sha256 cellar: :any, big_sur:        "46fe6ef734f0795940ff3af319018795227dfbf28bdcbf659799155bef38a21f"
-    sha256               x86_64_linux:   "6677fcd8a9748be5cdf45404db1ab6fce4d5d40f136a615c76ca52da6bfa382f"
+    sha256 cellar: :any, arm64_ventura:  "cd7b1535149373f7c410744a5130780004d302f935987e2ef1800e85f0e56976"
+    sha256 cellar: :any, arm64_monterey: "1fd84497ac979eef4be7b6a35e03760314a3dcd585e1e10a458c399cf49691bf"
+    sha256 cellar: :any, arm64_big_sur:  "1d34c400df01493dae6aecece1f5993bda6f5e4d38f48f302f1e6e4e37aab41f"
+    sha256 cellar: :any, ventura:        "a89c5baccd71c7f784f56aa6dfe52bf64a02f6fc35dcbf13b75d124cf1088e7c"
+    sha256 cellar: :any, monterey:       "8e120aaeb3f12a9b5fe9d775d8671878db3b421e60737c727e417b5e8b54fdfb"
+    sha256 cellar: :any, big_sur:        "a01e52ab82ba084490a89a7e9fbbfb4168e61ad30abb047527f70a2992fa212e"
+    sha256               x86_64_linux:   "d3312e4e707d034c032a28952b71b30b0a40da74f0822cc11e3e4b22035a0a22"
   end
 
   depends_on "cmake" => :build
@@ -54,8 +54,8 @@ class Snort < Formula
   # build patch, remove when it is available
   # upstream PR ref, https://github.com/snort3/snort3/pull/286
   patch do
-    url "https://github.com/snort3/snort3/commit/2b498993a47c728c3e273b440266eb40e5aa56c6.patch?full_index=1"
-    sha256 "fb93fe6bf01f3f7d3479c25f2ebe52f0d19b42574b608ec15451c3397906139b"
+    url "https://github.com/snort3/snort3/commit/02e60e50d1a4a18d27643d5f4474bfc0c4709e14.patch?full_index=1"
+    sha256 "25fcf002f9613a1fcc06127c72ed2315c93580a6da2c0afd2e82e081f35dd9fc"
   end
 
   def install

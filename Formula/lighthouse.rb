@@ -1,18 +1,18 @@
 class Lighthouse < Formula
   desc "Rust Ethereum 2.0 Client"
   homepage "https://github.com/sigp/lighthouse"
-  url "https://github.com/sigp/lighthouse/archive/refs/tags/v3.4.0.tar.gz"
-  sha256 "828f29c0c7d6a0ed311f9e48e4718a8152703bfdd74dc724829760d91f2fd33d"
+  url "https://github.com/sigp/lighthouse/archive/refs/tags/v4.0.1.tar.gz"
+  sha256 "ada195504c1c0e441c52def44e7f0ba6eb8fd69a1662ee39c6092a1db6627317"
   license "Apache-2.0"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "78e2184df5f5a1b626326933223a615316e6f80726cd755f904a5c8e355f0e89"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "16afbff027cb65406c830105a23ac7cc883a1564d77844cc1b2b27d3799b78a2"
-    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "bf39a230ea3f75561a3873e3adde753282ad84a8dd3e031cb0a3684a64480899"
-    sha256 cellar: :any_skip_relocation, ventura:        "46ee29ec03c0afe9771509dbf86a54d2410d87257092ded531bb34998da4c7d4"
-    sha256 cellar: :any_skip_relocation, monterey:       "a7edef9ce2b2c169c7d5d10e3dde4e611dc3a3c6af72a6147164256e2e7f1ac2"
-    sha256 cellar: :any_skip_relocation, big_sur:        "473192d7dea04d61b703fd0f463c52bb5fc08ad68062e49973cd235b87bbcad0"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "5afaea56968d2d751edb71a448e50b4cf9877d7fca52b8a4bc674b173d45057b"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "47e08d64897042421219492ebce8461c4698ce619ff52714dff314eeb8c1d119"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "79edc35709a394f10adcd3783ef9c3ec6e78ece2c8d5410495dce8131a495fa5"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "5815b153b1b3650e1d2ecd6a10383b5fa15192173064583da6f23b16fceaf901"
+    sha256 cellar: :any_skip_relocation, ventura:        "8d320b58a3bf0c7e92b6168744dac3ffaee950eedebe29ff93e0424d9492a73f"
+    sha256 cellar: :any_skip_relocation, monterey:       "cef9618a3ea6d68c3f1f0458338adcf7c9b068fdfb2357ef318b45394b8ba9f0"
+    sha256 cellar: :any_skip_relocation, big_sur:        "b8f52ca58d573c0755e3e90bc4754954043d7f83e01ff25db4a729bd1397a669"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "785bc34fa35180dbf1122c7df9a760d3365aa8ee3a06765566e5596bae101ba7"
   end
 
   depends_on "cmake" => :build
@@ -24,7 +24,7 @@ class Lighthouse < Formula
 
   def install
     ENV["PROTOC_NO_VENDOR"] = "1"
-    system "cargo", "install", *std_cargo_args(path: "./lighthouse")
+    system "cargo", "install", "--no-default-features", *std_cargo_args(path: "./lighthouse")
   end
 
   test do

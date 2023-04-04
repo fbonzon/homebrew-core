@@ -53,7 +53,7 @@ class Sftpgo < Formula
   end
 
   service do
-    run [bin/"sftpgo", "serve", "--config-file", etc/"sftpgo/sftpgo.json", "--log-file-path",
+    run [opt_bin/"sftpgo", "serve", "--config-file", etc/"sftpgo/sftpgo.json", "--log-file-path",
          var/"sftpgo/log/sftpgo.log"]
     keep_alive true
     require_root true
@@ -77,8 +77,8 @@ class Sftpgo < Formula
     sleep 5
     assert_match expected_output, shell_output("curl -s 127.0.0.1:#{http_port}/healthz")
     system "ssh-keyscan", "-p", sftp_port.to_s, "127.0.0.1"
-    ensure
-      Process.kill("TERM", pid)
-      Process.wait(pid)
+  ensure
+    Process.kill("TERM", pid)
+    Process.wait(pid)
   end
 end

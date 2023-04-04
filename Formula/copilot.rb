@@ -4,8 +4,8 @@ class Copilot < Formula
   desc "CLI tool for Amazon ECS and AWS Fargate"
   homepage "https://aws.github.io/copilot-cli/"
   url "https://github.com/aws/copilot-cli.git",
-      tag:      "v1.25.0",
-      revision: "ba44a7ebf4c879a97c3f1ce2ff028bd6357f7893"
+      tag:      "v1.27.0",
+      revision: "e1f8f53a444e4e1bf74f16805ea844afd00ae54b"
   license "Apache-2.0"
   head "https://github.com/aws/copilot-cli.git", branch: "mainline"
 
@@ -15,13 +15,13 @@ class Copilot < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "6e9ef48f73f2e862e6f82798876ae5e3ffdea88b09fb65b4dbcde49e7c090e1c"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "7892b5c994be4ae0d0d08e7e674e22293fbfb4cfc680fd39212aa050b4908331"
-    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "737472f9a96867214bd0054db2f605edc72edc2199375dd72a4802a8acfd79ff"
-    sha256 cellar: :any_skip_relocation, ventura:        "ec6c318f847f2ac1501fdc695586ace7358d4ae976d31ded6c51a281e541df22"
-    sha256 cellar: :any_skip_relocation, monterey:       "09b324a0e6f700799630fe24d7754fd24815cb5c1401615f795c3b8cd9ed02a7"
-    sha256 cellar: :any_skip_relocation, big_sur:        "5007f1e8e2e33d41135dc7d5b199470ede227e9f12d76d1bd3bf973f28727850"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "27fb07d18848a8a806e00eb7fbeae1c376475e53de7b0393f166e4e40b07813f"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "9d2d403feb5f2e797df2fd81abcb6015d3e5a7df18cbeeb20dfda3c2e4f5a0b2"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "522d31042eed5f6c69b1668d02d3befb75bbb8f5a6b43dd6ed68e98632943fc7"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "c21ed49b22fb7e198eead215570ff31ad421bdded026587ce3310badcf4ae77f"
+    sha256 cellar: :any_skip_relocation, ventura:        "c7adaf88af5c8d33ec4544d9bf2d96da6faa7c5332f6a15fa2ff9933ca7d36c3"
+    sha256 cellar: :any_skip_relocation, monterey:       "d08fbf0c0894770c577818315146a21cc44d7cbe50a95de5938cb6cfb8967cc4"
+    sha256 cellar: :any_skip_relocation, big_sur:        "924afa7179d814a49bdfa748b088e600baa2e3e6d64bc7d69669c720f7cf742c"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "4326ff86fc22cbddf5e3083fb8f2e51a8a5ebffe61e147bce1ca2e1bd2c95bee"
   end
 
   depends_on "go" => :build

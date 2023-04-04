@@ -2,8 +2,8 @@ class Docker < Formula
   desc "Pack, ship and run any application as a lightweight container"
   homepage "https://www.docker.com/"
   url "https://github.com/docker/cli.git",
-      tag:      "v23.0.0",
-      revision: "e92dd87c3209361f29b692ab4b8f0f9248779297"
+      tag:      "v23.0.2",
+      revision: "569dd73db13099a7c3104d73aa15117b359045bc"
   license "Apache-2.0"
   head "https://github.com/docker/cli.git", branch: "master"
 
@@ -13,13 +13,13 @@ class Docker < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "30cbb4913d6a7550a85aad8ad0089c97668949d092953fa2fe224d2f7b547722"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "2bcc119ce6e7f1c7aff8d666ee2854ed16a17ebfc4c15a4e9157538ffa72f668"
-    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "8746daa90f294fce2ff21fb422b109602f49e1b3ae0e3f89822ce07d43141aac"
-    sha256 cellar: :any_skip_relocation, ventura:        "caec5764881ea0a52578f5a027a519add9dc11cbd0b8e2710e835e5fee704a95"
-    sha256 cellar: :any_skip_relocation, monterey:       "917b51a3237dc806f408787ee9af6ef2b4170068b672252d0504389beda8541b"
-    sha256 cellar: :any_skip_relocation, big_sur:        "10ed7249bf6e8902eb63784a23d6360faf5a037519ff0eca48eee14dba6908f1"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "36c1394b67ca8c4573f2688c15367c0365fe92cfce937e66ac34551fed475f86"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "01e9a03a8923d4579279821af5e0177c7e5e560ddb8ba57c2787eeed195fbc26"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "01e9a03a8923d4579279821af5e0177c7e5e560ddb8ba57c2787eeed195fbc26"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "01e9a03a8923d4579279821af5e0177c7e5e560ddb8ba57c2787eeed195fbc26"
+    sha256 cellar: :any_skip_relocation, ventura:        "794b05560d4d737cb63deffdf12aeecbfa005bb71b694c6cbed4cd022eb58ee0"
+    sha256 cellar: :any_skip_relocation, monterey:       "794b05560d4d737cb63deffdf12aeecbfa005bb71b694c6cbed4cd022eb58ee0"
+    sha256 cellar: :any_skip_relocation, big_sur:        "794b05560d4d737cb63deffdf12aeecbfa005bb71b694c6cbed4cd022eb58ee0"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "019cd705392d171ab775ea7ec6b7cd0f5f803156fcd5c9f0703d0fabc51770e0"
   end
 
   depends_on "go" => :build

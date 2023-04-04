@@ -1,25 +1,26 @@
 class Temporal < Formula
   desc "Command-line interface for running and interacting with Temporal Server and UI"
   homepage "https://temporal.io/"
-  url "https://github.com/temporalio/cli/archive/v0.3.0.tar.gz"
-  sha256 "80790e8bcc0c362d4d175a33b1abd0016cae886b5af49df15a5e3f37af8ccd32"
+  url "https://github.com/temporalio/cli/archive/refs/tags/v0.8.0.tar.gz"
+  sha256 "ac3b43ff95caf697a9cf2f93294b541524ccc5ad6d5079deac1d60954373bdcb"
   license "MIT"
   head "https://github.com/temporalio/cli.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "0bcc84075002e930e0a30f1a88937cc2104cd9d58aa69e13b957580913392f4e"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "750aaba3847539671941b17d1fd18a9d93cc901fd771fece5d2015ca3d5b7a08"
-    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "6cda4bb7592c192e3e1dac1f88a21564e6e1edfd61c589d46685645ff16a2cb5"
-    sha256 cellar: :any_skip_relocation, ventura:        "aaf4f01b676aa91a9d311dd26989920994ae0c7d7764b68b8846506352fd8ca7"
-    sha256 cellar: :any_skip_relocation, monterey:       "82ea2a41d3261a6973bf1cc49d12fc620a674df795a322726ebcc50166b494a2"
-    sha256 cellar: :any_skip_relocation, big_sur:        "0765ebfde8d674eb9c9adafd8e33c32c2f1046bad061181a6fdb665e28629f5b"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "059cb1c88cdb25f9c3433e5dd14540156b71d7e289d64f6fed9838bffb12ed6d"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "277a7b3f055950d9b13457f186e22d76a3463c509bfeea239c5cd8c75375bdee"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "784c78d3607aee431cb2b73538fb0df3fc4a0f8c6aa49167af881a34ecd013fa"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "9eae4e7332f7467c927795cca95cfe566f0a04e3d02ce272a3e4e073c3d50c54"
+    sha256 cellar: :any_skip_relocation, ventura:        "48f19833c3fb325c3fb08a317e33c6279ed1696492ea3f0a749a4792630d6529"
+    sha256 cellar: :any_skip_relocation, monterey:       "10e9f1cf373aa6a3389f3691521f487ac20607924940d415420caa932519ce9c"
+    sha256 cellar: :any_skip_relocation, big_sur:        "afdce207e2aa44331f494b48630285cf5b5c124753df9c8bdf5f60310d6e7a6d"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "746b02a7fa80732f169cec4c929fd5d7a0b9cf3062c2c804c71f43ca2749b9cf"
   end
 
   depends_on "go" => :build
 
   def install
-    system "go", "build", *std_go_args(ldflags: "-s -w"), "./cmd/temporal"
+    ldflags = "-s -w -X github.com/temporalio/cli/headers.Version=#{version}"
+    system "go", "build", *std_go_args(ldflags: ldflags), "./cmd/temporal"
   end
 
   test do

@@ -2,11 +2,10 @@
 class Macvim < Formula
   desc "GUI for vim, made for macOS"
   homepage "https://github.com/macvim-dev/macvim"
-  url "https://github.com/macvim-dev/macvim/archive/refs/tags/release-174.tar.gz"
-  version "9.0.472"
-  sha256 "9481eeca43cfc0a7cf0604088c4b536f274821adb62b0daefada978aa7f4c41b"
+  url "https://github.com/macvim-dev/macvim/archive/refs/tags/release-176.tar.gz"
+  version "9.0.1276"
+  sha256 "e729964b4979f42fd2701236adb9bea35c6cf3981aa02ae7790a240fb92cf39e"
   license "Vim"
-  revision 2
   head "https://github.com/macvim-dev/macvim.git", branch: "master"
 
   livecheck do
@@ -16,17 +15,19 @@ class Macvim < Formula
   end
 
   bottle do
-    sha256 arm64_ventura:  "6bfdc09ca2b99add2aab85877dc9e44ff37c73e9f8f594f4b619d35df35d8558"
-    sha256 arm64_monterey: "b223801cfc94df5f6ca8a11c4d0be1ae240559ab32461d325505a970bbca7fc7"
-    sha256 arm64_big_sur:  "3ea26eb1b2b4da3a3caed0ef72fcc155082b1c968d04723ed6c50a9caa8495f0"
-    sha256 ventura:        "bd2a166bbded6d54435acb2b27a1f13f33a36cd967f1696df458ef5ad5d66ee9"
-    sha256 monterey:       "e7ffda7e075604b7566b18fbd1aad6ed0509212e32f62e1d477d4c82916645cb"
-    sha256 big_sur:        "9f1ce443270f7a6dcb74ffc1c71348f2dccd232c70e88b3420dd171a80670b50"
+    rebuild 1
+    sha256 cellar: :any, arm64_ventura:  "6bb6a8a82b9bb7ace5eb9f34f1571d7b36d4bf553f50941ce147ca41cd8f85d8"
+    sha256 cellar: :any, arm64_monterey: "e889d6c32cffdcc33f2bfe6ca04146c5d96ba9553cb2b50db8837007960494c1"
+    sha256 cellar: :any, arm64_big_sur:  "b2849fff6142ba20264b21ac9fad8f55487cbae05b64fe750d14f223f454594a"
+    sha256 cellar: :any, ventura:        "82f5456d5dce39f23dcd1cf317e9f652eb19bdd0989f9aaee088df7d49364aca"
+    sha256 cellar: :any, monterey:       "3ffeaf80f4fa63c0589526538fae88986550113e356f820868c65416ed9d060e"
+    sha256 cellar: :any, big_sur:        "1fedbf1fb207c159c977f331b6be5aad689fd7551287840a066fe94bda73efea"
   end
 
+  depends_on "gettext" => :build
+  depends_on "libsodium" => :build
   depends_on xcode: :build
   depends_on "cscope"
-  depends_on "gettext"
   depends_on "lua"
   depends_on :macos
   depends_on "python@3.11"
@@ -81,6 +82,7 @@ class Macvim < Formula
     output = shell_output("#{bin}/mvim --version")
     assert_match "+ruby", output
     assert_match "+gettext", output
+    assert_match "+sodium", output
 
     # Simple test to check if MacVim was linked to Homebrew's Python 3
     py3_exec_prefix = shell_output(Formula["python@3.11"].opt_libexec/"bin/python-config --exec-prefix")
